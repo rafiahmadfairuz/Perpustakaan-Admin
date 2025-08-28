@@ -1,15 +1,12 @@
-@php
-    $isKelolaActive = request()->routeIs('buku.index') || request()->routeIs('anggota.index');
-    $isLogActive = request()->routeIs('log.peminjaman') || request()->routeIs('log.pengembalian');
-@endphp
-
 <!-- Sidebar -->
 <div class="sidebar" data-background-color="dark2">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark2">
-            <a href="{{ route('dashboard.index') }}" class="logo">
-                <img src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand" height="20" />
+            <a href="#" class="logo d-flex align-items-center">
+                <img src="{{ asset('assets/img/Skarisa.png') }}" alt="Logo Skarisa" height="34" class="me-2">
+                <span style="color: white; font-weight: bold; font-size: 20px;">Smk Krian 1</span>
             </a>
+
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
                     <i class="gg-menu-right"></i>
@@ -24,113 +21,150 @@
         </div>
     </div>
 
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
-        <div class="sidebar-content">
-
+    <!-- Wrapper pakai flex column -->
+    <div class="sidebar-wrapper scrollbar scrollbar-inner d-flex flex-column">
+        <!-- Konten Atas -->
+        <div class="sidebar-content flex-grow-1">
             <!-- User Profile -->
-            <div class="user-box d-flex align-items-center justify-center pt-3 px-3 profile-info">
-                <div class="avatar avatar-lg mx-4">
-                    <img src="{{ asset('assets/img/jm_denis.jpg') }}" alt="..." class="avatar-img rounded-circle">
+            <div class="text-center pe-3 py-3 profile-info">
+                <!-- Avatar -->
+                <div class="mb-2">
+                    <img src="{{ asset('assets/img/avatar.png') }}" alt="Profile" class="avatar-img rounded-circle"
+                        style="width:120px; height:120px; border:3px solid #fff;">
                 </div>
-                <div class="">
-                    <div class="text-white fw-bold">Rafi Ahmad</div>
-                    <div class="badge" style="background-color: #6f42c1; color: #fff; margin-top: 4px;">Administrator</div>
+
+                <!-- Nama & Role -->
+                <div class="text-white fw-bold">Rafi Ahmad</div>
+
+                <!-- Tombol Modul -->
+                <div class="mt-3">
+                    <a href="#" class="btn btn-sm px-5"
+                        style="background:none; border:1px solid yellow; color:yellow; font-weight:bold;">
+                        LOGOUT
+                    </a>
                 </div>
             </div>
             <!-- End User Profile -->
 
+            <!-- Menu Navigasi -->
             <ul class="nav nav-secondary">
-                <li class="nav-section" style="background-color: rgba(255, 255, 255, 0.05); padding: 0.02px 0 15px 0">
-                    <span class="sidebar-mini-icon text-white">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <div class="text-section text-white mb-0">MAIN NAVIGATION</div>
-                </li>
-
-                <li class="nav-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard.index') }}">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <li class="nav-item {{ $isKelolaActive ? 'active submenu' : '' }}">
-                    <a data-bs-toggle="collapse" href="#kelolaData" aria-expanded="{{ $isKelolaActive ? 'true' : 'false' }}">
-                        <i class="fas fa-folder"></i>
-                        <p>Kelola Data</p>
+                <!-- BERANDA -->
+                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
+                    <a data-bs-toggle="collapse" href="#menuBeranda" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <p>Beranda</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ $isKelolaActive ? 'show' : '' }}" id="kelolaData">
+                    <div class="collapse" id="menuBeranda">
                         <ul class="nav nav-collapse">
-                            <li class="{{ request()->routeIs('buku.index') ? 'active' : '' }}">
-                                <a href="{{ route('buku.index') }}"><span class="sub-item">Data Buku</span></a>
+                            <li><a href="#"><span class="sub-item">Home</span></a></li>
+                            <li><a href="#"><span class="sub-item">Konfigurasi</span></a></li>
+                            <li>
+                                <a data-bs-toggle="collapse" href="#submenuKeanggotaan" aria-expanded="false">
+                                    <span class="sub-item">Keanggotaan</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="submenuKeanggotaan">
+                                    <ul class="nav nav-collapse ms-4">
+                                        <li><a href="#"><span class="sub-item">Daftar Anggota</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Tipe Anggota</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Cetak Kartu Anggota</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Surat Bebas Perpustakaan</span></a></li>
+                                    </ul>
+                                    <hr>
+                                </div>
                             </li>
-                            <li class="{{ request()->routeIs('anggota.index') ? 'active' : '' }}">
-                                <a href="{{ route('anggota.index') }}"><span class="sub-item">Data Anggota</span></a>
+                            <li>
+                                <a data-bs-toggle="collapse" href="#submenuTabel" aria-expanded="false">
+                                    <span class="sub-item">Tabel Data</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse" id="submenuTabel">
+                                    <ul class="nav nav-collapse ms-4">
+                                        <li><a href="#"><span class="sub-item">Hari Libur</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Jenis Item (GMD)</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Penerbit</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Penulis</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Supplier</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Topik</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Lokasi</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Rak</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Tempat Penerbit</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Status Item</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Tipe Koleksi</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Frekuensi</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Bahasa</span></a></li>
+                                        <li><a href="#"><span class="sub-item">Tujuan Bebas Perpus</span></a></li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('sirkulasi') ? 'active' : '' }}">
-                    <a href="{{ route('sirkulasi') }}">
-                        <i class="fas fa-sync-alt"></i>
+                <!-- SIRKULASI -->
+                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
+                    <a data-bs-toggle="collapse" href="#menuSirkulasi" aria-expanded="false">
+                        <i class="fas fa-exchange-alt"></i>
                         <p>Sirkulasi</p>
-                    </a>
-                </li>
-
-                <li class="nav-item {{ $isLogActive ? 'active submenu' : '' }}">
-                    <a data-bs-toggle="collapse" href="#logData" aria-expanded="{{ $isLogActive ? 'true' : 'false' }}">
-                        <i class="fas fa-book"></i>
-                        <p>Log Data</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ $isLogActive ? 'show' : '' }}" id="logData">
+                    <div class="collapse" id="menuSirkulasi">
                         <ul class="nav nav-collapse">
-                            <li class="{{ request()->routeIs('log.peminjaman') ? 'active' : '' }}">
-                                <a href="{{ route('log.peminjaman') }}"><span class="sub-item">Log Peminjaman</span></a>
-                            </li>
-                            <li class="{{ request()->routeIs('log.pengembalian') ? 'active' : '' }}">
-                                <a href="{{ route('log.pengembalian') }}"><span class="sub-item">Log Pengembalian</span></a>
-                            </li>
+                            <li><a href="#"><span class="sub-item">Transaksi</span></a></li>
+                            <li><a href="#"><span class="sub-item">Pengembalian</span></a></li>
+                            <li><a href="#"><span class="sub-item">Pemesanan</span></a></li>
+                            <li><a href="#"><span class="sub-item">Aturan Peminjaman</span></a></li>
+                            <li><a href="#"><span class="sub-item">Riwayat Peminjaman</span></a></li>
+                            <li><a href="#"><span class="sub-item">Daftar Keterlambatan</span></a></li>
+                            <li><a href="#"><span class="sub-item">Stock Opname</span></a></li>
                         </ul>
                     </div>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('laporan.sirkulasi') ? 'active' : '' }}">
-                    <a href="{{ route('laporan.sirkulasi') }}">
-                        <i class="fas fa-print"></i>
-                        <p>Laporan Sirkulasi</p>
+                <!-- KATALOG -->
+                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
+                    <a data-bs-toggle="collapse" href="#menuKatalog" aria-expanded="false">
+                        <i class="fas fa-book-open"></i>
+                        <p>Katalog</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse" id="menuKatalog">
+                        <ul class="nav nav-collapse">
+                            <li><a href="#"><span class="sub-item">Biblio Grafi</span></a></li>
+                            <li><a href="#"><span class="sub-item">Daftar Item</span></a></li>
+                            <li><a href="#"><span class="sub-item">Item Keluar</span></a></li>
+                            <li><a href="#"><span class="sub-item">Serial Control</span></a></li>
+                            <li><a href="#"><span class="sub-item">Cetak Label</span></a></li>
+                            <li><a href="#"><span class="sub-item">Cetak Barcode Item</span></a></li>
+                            <li><a href="#"><span class="sub-item">Cetak Catalog</span></a></li>
+                        </ul>
+                    </div>
                 </li>
 
-                <li class="nav-section" style="background-color: rgba(255, 255, 255, 0.05); padding: 0.02px 0 15px 0">
-                    <span class="sidebar-mini-icon text-white">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <div class="text-section text-white mb-0">SETTING</div>
-                </li>
-
-                <li class="nav-item {{ request()->routeIs('pengguna.sistem') ? 'active' : '' }}">
-                    <a href="{{ route('pengguna.sistem') }}">
-                        <i class="fas fa-users-cog"></i>
-                        <p>Pengguna Sistem</p>
+                <!-- PELAPORAN -->
+                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
+                    <a data-bs-toggle="collapse" href="#menuPelaporan" aria-expanded="false">
+                        <i class="fas fa-chart-pie"></i>
+                        <p>Pelaporan</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse" id="menuPelaporan">
+                        <ul class="nav nav-collapse">
+                            <li><a href="#"><span class="sub-item">Statistik Koleksi</span></a></li>
+                            <li><a href="#"><span class="sub-item">Laporan Peminjaman</span></a></li>
+                            <li><a href="#"><span class="sub-item">Laporan Keanggotaan</span></a></li>
+                            <li><a href="#"><span class="sub-item">Rekapitulasi</span></a></li>
+                            <li><a href="#"><span class="sub-item">Daftar Pengunjung</span></a></li>
+                            <li><a href="#"><span class="sub-item">Laporan Denda</span></a></li>
+                            <li><a href="#"><span class="sub-item">Rekaptulasi Berkala</span></a></li>
+                            <li><a href="#"><span class="sub-item">Rekaptulasi Buku</span></a></li>
+                        </ul>
+                    </div>
                 </li>
-<li class="nav-item">
-    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="fas fa-sign-out-alt"></i>
-        <p>Logout</p>
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-</li>
-
-
             </ul>
         </div>
+
     </div>
 </div>
 <!-- End Sidebar -->

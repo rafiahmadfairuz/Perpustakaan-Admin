@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ @yield("title") }}</title>
-     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+    <title>Perpustakaan SMK Krian 1 Sidoarjo</title>
+
+    <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
             google: {
@@ -29,19 +31,32 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/kaiadmin.min.css') }}">
+
+    <style>
+        .wrapper.sidebar_minimize .profile-info {
+            display: none !important;
+        }
+        
+    </style>
 </head>
+
+
 <body>
     <div class="wrapper">
         <x-SideBar></x-SideBar>
-        <div class="main-pannel">
+        <div class="main-panel">
+            <x-header></x-header>
             <div class="container">
                 <div class="page-inner">
                     {{ $slot }}
                 </div>
             </div>
+
         </div>
+
     </div>
-     <!-- Core JS Files -->
+
+    <!-- Core JS Files -->
     <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
@@ -77,5 +92,5 @@
 
 
 
-</body>
+  </body>
 </html>
