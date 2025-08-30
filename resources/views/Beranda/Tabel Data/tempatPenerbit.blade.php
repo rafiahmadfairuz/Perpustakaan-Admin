@@ -1,5 +1,6 @@
 <x-app>
-    <livewire:konfigurasi-component />
+    <livewire:tabel-data.tempat-penerbit />
+
 </x-app>
 
 <script>

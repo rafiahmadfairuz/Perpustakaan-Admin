@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perpustakaan SMK Krian 1 Sidoarjo</title>
-
+    @livewireStyles
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
@@ -36,7 +36,7 @@
         .wrapper.sidebar_minimize .profile-info {
             display: none !important;
         }
-        
+
     </style>
 </head>
 
@@ -88,9 +88,6 @@
 
     <!-- Kaiadmin JS -->
     <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
-
-
-
-
+   @livewireScripts
   </body>
 </html>

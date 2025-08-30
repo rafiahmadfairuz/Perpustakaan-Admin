@@ -1,5 +1,6 @@
 <x-app>
-    <livewire:konfigurasi-component />
+    <livewire:tabel-data.jenis-item />
+
 </x-app>
 
 <script>

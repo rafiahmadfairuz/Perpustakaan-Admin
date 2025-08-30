@@ -1,5 +1,6 @@
 <x-app>
-    <livewire:konfigurasi-component />
+    <livewire:keanggotaan.daftar-anggota-component />
+
 </x-app>
 
 <script>

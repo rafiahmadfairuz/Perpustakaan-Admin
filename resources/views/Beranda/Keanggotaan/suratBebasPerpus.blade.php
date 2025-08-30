@@ -1,5 +1,6 @@
 <x-app>
-    <livewire:konfigurasi-component />
+    <livewire:keanggotaan.surat-bebas-perpustakaan />
+
 </x-app>
 
 <script>

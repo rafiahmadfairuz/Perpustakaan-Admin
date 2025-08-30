@@ -1,8 +1,14 @@
+@php
+    $isBerandaActive = request()->routeIs('home.index') || request()->routeIs('konfigurasi.index');
+    $isKeanggotaanActive = request()->routeIs('keanggotaan.*');
+    $isTabelActive = request()->routeIs('tabel.*');
+@endphp
+
 <!-- Sidebar -->
 <div class="sidebar" data-background-color="dark2">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark2">
-            <a href="#" class="logo d-flex align-items-center">
+            <a href="{{ route('home.index') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('assets/img/Skarisa.png') }}" alt="Logo Skarisa" height="34" class="me-2">
                 <span style="color: white; font-weight: bold; font-size: 20px;">Smk Krian 1</span>
             </a>
@@ -27,16 +33,11 @@
         <div class="sidebar-content flex-grow-1">
             <!-- User Profile -->
             <div class="text-center pe-3 py-3 profile-info">
-                <!-- Avatar -->
                 <div class="mb-2">
                     <img src="{{ asset('assets/img/avatar.png') }}" alt="Profile" class="avatar-img rounded-circle"
                         style="width:120px; height:120px; border:3px solid #fff;">
                 </div>
-
-                <!-- Nama & Role -->
                 <div class="text-white fw-bold">Rafi Ahmad</div>
-
-                <!-- Tombol Modul -->
                 <div class="mt-3">
                     <a href="#" class="btn btn-sm px-5"
                         style="background:none; border:1px solid yellow; color:yellow; font-weight:bold;">
@@ -49,52 +50,117 @@
             <!-- Menu Navigasi -->
             <ul class="nav nav-secondary">
                 <!-- BERANDA -->
-                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
-                    <a data-bs-toggle="collapse" href="#menuBeranda" aria-expanded="false">
+                <li class="nav-item my-3 py-2 {{ $isBerandaActive || $isKeanggotaanActive || $isTabelActive ? 'active submenu' : '' }}"
+                    style="background-color: rgba(255,255,255,0.05);">
+                    <a data-bs-toggle="collapse" href="#menuBeranda"
+                        aria-expanded="{{ $isBerandaActive || $isKeanggotaanActive || $isTabelActive ? 'true' : 'false' }}">
                         <i class="fas fa-home"></i>
                         <p>Beranda</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="menuBeranda">
+                    <div class="collapse {{ $isBerandaActive || $isKeanggotaanActive || $isTabelActive ? 'show' : '' }}"
+                        id="menuBeranda">
                         <ul class="nav nav-collapse">
-                            <li><a href="#"><span class="sub-item">Home</span></a></li>
-                            <li><a href="#"><span class="sub-item">Konfigurasi</span></a></li>
-                            <li>
-                                <a data-bs-toggle="collapse" href="#submenuKeanggotaan" aria-expanded="false">
+                            <li class="{{ request()->routeIs('home.index') ? 'active' : '' }}">
+                                <a href="{{ route('home.index') }}"><span class="sub-item">Home</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('konfigurasi.index') ? 'active' : '' }}">
+                                <a href="{{ route('konfigurasi.index') }}"><span class="sub-item">Konfigurasi</span></a>
+                            </li>
+                            <li class="{{ $isKeanggotaanActive ? 'active submenu' : '' }}">
+                                <a data-bs-toggle="collapse" href="#submenuKeanggotaan"
+                                    aria-expanded="{{ $isKeanggotaanActive ? 'true' : 'false' }}">
                                     <span class="sub-item">Keanggotaan</span>
                                     <span class="caret"></span>
                                 </a>
-                                <div class="collapse" id="submenuKeanggotaan">
+                                <div class="collapse {{ $isKeanggotaanActive ? 'show' : '' }}" id="submenuKeanggotaan">
                                     <ul class="nav nav-collapse ms-4">
-                                        <li><a href="#"><span class="sub-item">Daftar Anggota</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Tipe Anggota</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Cetak Kartu Anggota</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Surat Bebas Perpustakaan</span></a></li>
+                                        <li class="{{ request()->routeIs('keanggotaan.daftar') ? 'active' : '' }}">
+                                            <a href="{{ route('keanggotaan.daftar') }}"><span class="sub-item">Daftar
+                                                    Anggota</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('keanggotaan.tipe') ? 'active' : '' }}">
+                                            <a href="{{ route('keanggotaan.tipe') }}"><span class="sub-item">Tipe
+                                                    Anggota</span></a>
+                                        </li>
+                                        <li
+                                            class="{{ request()->routeIs('keanggotaan.surat_bebas') ? 'active' : '' }}">
+                                            <a href="{{ route('keanggotaan.surat_bebas') }}"><span
+                                                    class="sub-item">Surat Bebas Perpustakaan</span></a>
+                                        </li>
                                     </ul>
-                                    <hr>
+                                   
                                 </div>
                             </li>
-                            <li>
-                                <a data-bs-toggle="collapse" href="#submenuTabel" aria-expanded="false">
+
+
+                            @if ($isTabelActive)
+                                <hr>
+                            @endif
+
+                            <li class="{{ $isTabelActive ? 'active submenu' : '' }}">
+                                <a data-bs-toggle="collapse" href="#submenuTabel"
+                                    aria-expanded="{{ $isTabelActive ? 'true' : 'false' }}">
                                     <span class="sub-item">Tabel Data</span>
                                     <span class="caret"></span>
                                 </a>
-                                <div class="collapse" id="submenuTabel">
+                                <div class="collapse {{ $isTabelActive ? 'show' : '' }}" id="submenuTabel">
                                     <ul class="nav nav-collapse ms-4">
-                                        <li><a href="#"><span class="sub-item">Hari Libur</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Jenis Item (GMD)</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Penerbit</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Penulis</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Supplier</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Topik</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Lokasi</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Rak</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Tempat Penerbit</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Status Item</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Tipe Koleksi</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Frekuensi</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Bahasa</span></a></li>
-                                        <li><a href="#"><span class="sub-item">Tujuan Bebas Perpus</span></a></li>
+                                        <li class="{{ request()->routeIs('tabel.hari_libur') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.hari_libur') }}"><span class="sub-item">Hari
+                                                    Libur</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.jenis_item') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.jenis_item') }}"><span class="sub-item">Jenis Item
+                                                    (GMD)</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.penerbit') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.penerbit') }}"><span
+                                                    class="sub-item">Penerbit</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.penulis') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.penulis') }}"><span
+                                                    class="sub-item">Penulis</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.supplier') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.supplier') }}"><span
+                                                    class="sub-item">Supplier</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.topik') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.topik') }}"><span
+                                                    class="sub-item">Topik</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.lokasi') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.lokasi') }}"><span
+                                                    class="sub-item">Lokasi</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.rak') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.rak') }}"><span class="sub-item">Rak</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.tempat_penerbit') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.tempat_penerbit') }}"><span
+                                                    class="sub-item">Tempat Penerbit</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.status_item') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.status_item') }}"><span class="sub-item">Status
+                                                    Item</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.tipe_koleksi') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.tipe_koleksi') }}"><span class="sub-item">Tipe
+                                                    Koleksi</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.frekuensi') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.frekuensi') }}"><span
+                                                    class="sub-item">Frekuensi</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.bahasa') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.bahasa') }}"><span
+                                                    class="sub-item">Bahasa</span></a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('tabel.tujuan_bebas') ? 'active' : '' }}">
+                                            <a href="{{ route('tabel.tujuan_bebas') }}"><span class="sub-item">Tujuan
+                                                    Bebas Perpus</span></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -164,7 +230,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </div>
 <!-- End Sidebar -->
