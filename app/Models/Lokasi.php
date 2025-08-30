@@ -10,6 +10,9 @@ class Lokasi extends Model
     /** @use HasFactory<\Database\Factories\LokasiFactory> */
     use HasFactory;
     protected $guarded = ['id'];
+    protected $casts = [
+        'is_sgd' => 'boolean',
+    ];
     public function rak()
     {
         return $this->hasMany(Rak::class, 'lokasi_id', 'kode_lokasi');

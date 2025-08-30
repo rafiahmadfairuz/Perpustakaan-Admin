@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('lokasi_id')
                 ->references('kode_lokasi')
                 ->on('lokasis')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
     }
 

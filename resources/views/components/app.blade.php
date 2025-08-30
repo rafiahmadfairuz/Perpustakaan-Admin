@@ -36,7 +36,6 @@
         .wrapper.sidebar_minimize .profile-info {
             display: none !important;
         }
-
     </style>
 </head>
 
@@ -51,10 +50,11 @@
                     {{ $slot }}
                 </div>
             </div>
-
         </div>
-
     </div>
+
+
+
 
     <!-- Core JS Files -->
     <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
@@ -88,6 +88,16 @@
 
     <!-- Kaiadmin JS -->
     <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
-   @livewireScripts
-  </body>
+    @livewireScripts
+
+
+    <script>
+        window.addEventListener('close-modal', () => {
+            const modals = document.querySelectorAll('.modal.show');
+            modals.forEach(m => bootstrap.Modal.getInstance(m).hide());
+        });
+       
+    </script>
+</body>
+
 </html>

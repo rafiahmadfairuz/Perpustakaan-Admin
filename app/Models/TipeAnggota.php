@@ -10,6 +10,12 @@ class TipeAnggota extends Model
     /** @use HasFactory<\Database\Factories\TipeAnggotaFactory> */
     use HasFactory;
     protected $guarded = ['id'];
+    protected $casts = [
+        'is_siswa' => 'boolean',
+        'is_guru' => 'boolean',
+        'is_karyawan' => 'boolean',
+        'is_external' => 'boolean',
+    ];
     public function anggota()
     {
         return $this->hasMany(Anggota::class, 'tipe_anggota_id');

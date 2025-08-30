@@ -24,11 +24,11 @@ return new class extends Migration
             $table->foreign('member_id')
                 ->references('member_id')
                 ->on('anggotas')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
             $table->foreign('kode_item')
                 ->references('kode_item')
                 ->on('items')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
     }
 

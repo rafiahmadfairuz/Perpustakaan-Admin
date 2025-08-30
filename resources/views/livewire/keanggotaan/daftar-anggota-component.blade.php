@@ -1,14 +1,14 @@
 <div class="container-fluid">
-
     <div class="col-md-12 mt-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title mb-0">Data Anggota</h4>
                 <div class="d-flex gap-2">
-                    <!-- Tombol Tambah Anggota trigger modal -->
-                    <a href="#" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#addMemberModal">
+                    <button type="button" class="btn btn-dark btn-sm" wire:click="create" data-bs-toggle="modal"
+                        data-bs-target="#addMemberModal">
                         <i class="fa fa-plus"></i> Tambah Anggota
-                    </a>
+                    </button>
+
                     <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
                         <i class="fa fa-print"></i> Print
                     </a>
@@ -16,133 +16,82 @@
             </div>
 
             <div class="card-body">
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
+                <div class="mb-3 d-flex justify-content-between">
+                    <input type="text" class="form-control w-100" placeholder="Cari ID atau nama anggota..."
+                           wire:model.live.debounce.10ms="search">
+                </div>
+
                 <div class="table-responsive">
-                    <table id="multi-filter-select" class="display table table-striped table-hover">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Id Anggota</th>
                                 <th>Nama Anggota</th>
                                 <th>Tipe</th>
-                                <th>Keterangan</th>
+                                <th>Telepon</th>
                                 <th>Pending</th>
                                 <th>Kelola</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>A001</td>
-                                <td>Rafi Ahmad</td>
-                                <td>Siswa</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <span class="badge bg-success">Tidak</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#editMemberModal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteConfirmModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>A002</td>
-                                <td>Budi Santoso</td>
-                                <td>Siswa</td>
-                                <td>Cuti</td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">Ya</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#editMemberModal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteConfirmModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>A003</td>
-                                <td>Siti Aisyah</td>
-                                <td>Guru</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <span class="badge bg-success">Tidak</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#editMemberModal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteConfirmModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>A004</td>
-                                <td>Andi Pratama</td>
-                                <td>Alumni</td>
-                                <td>Tidak Aktif</td>
-                                <td>
-                                    <span class="badge bg-danger">Ya</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#editMemberModal">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteConfirmModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @forelse($anggotas as $index => $anggota)
+                                <tr>
+                                    <td>{{ $anggotas->firstItem() + $index }}</td>
+                                    <td>{{ $anggota->member_id }}</td>
+                                    <td>{{ $anggota->nama }}</td>
+                                    <td>{{ $anggota->tipeAnggota->nama_tipe ?? 'N/A' }}</td>
+                                    <td>{{ $anggota->telepon }}</td>
+                                    <td>
+                                        @if ($anggota->is_pending)
+                                            <span class="badge bg-warning text-dark">Ya</span>
+                                        @else
+                                            <span class="badge bg-success">Tidak</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <button class="btn btn-outline-dark btn-sm"
+                                                wire:click="editId({{ $anggota->id }})" data-bs-toggle="modal"
+                                                data-bs-target="#editMemberModal">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-sm"
+                                                wire:click="deleteId({{ $anggota->id }})" data-bs-toggle="modal"
+                                                data-bs-target="#deleteConfirmModal">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">Tidak ada data anggota.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Id Anggota</th>
-                                <th>Nama Anggota</th>
-                                <th>Tipe</th>
-                                <th>Keterangan</th>
-                                <th>Pending</th>
-                                <th>Kelola</th>
-                            </tr>
-                        </tfoot>
                     </table>
+                </div>
+                 <div class="mt-3">
+                    {{ $anggotas->links() }}
                 </div>
             </div>
 
@@ -151,7 +100,7 @@
 
     <!-- ==================== MODALS ==================== -->
     <!-- Modal Create Member -->
-    <div class="modal" id="addMemberModal" tabindex="-1" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="addMemberModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content rounded-3">
                 <div class="modal-header" style="background:#141927; color:#fff;">
@@ -159,67 +108,57 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="createMemberForm">
+                    <form wire:submit.prevent="store" id="createMemberForm">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Kode</label>
-                                <input type="text" class="form-control" placeholder="A005">
+                                <label class="form-label">ID Anggota</label>
+                                <input type="text" class="form-control @error('member_id') is-invalid @enderror"
+                                    wire:model.defer="member_id" placeholder="Contoh: A005">
+                                @error('member_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Nama Member</label>
-                                <input type="text" class="form-control" placeholder="Nama Lengkap">
+                                <label class="form-label">Nama Anggota</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                    wire:model.defer="nama" placeholder="Nama Lengkap">
+                                @error('nama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Gender</label>
-                                <div class="d-flex gap-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender"
-                                            value="L">
-                                        <label class="form-check-label">Laki</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender"
-                                            value="P">
-                                        <label class="form-check-label">Perempuan</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control">
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tipe Anggota</label>
+                            <select class="form-select @error('tipe_anggota_id') is-invalid @enderror"
+                                wire:model.defer="tipe_anggota_id">
+                                <option value="">Pilih Tipe</option>
+                                @foreach ($tipe_anggotas as $tipe)
+                                    <option value="{{ $tipe->id }}">{{ $tipe->nama_tipe }}</option>
+                                @endforeach
+                            </select>
+                            @error('tipe_anggota_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Alamat</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">No HP</label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
-                            </div>
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model.defer="alamat" rows="3"></textarea>
+                            @error('alamat')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tanggal Registrasi</label>
-                            <input type="date" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Nama Instansi</label>
-                            <input type="text" class="form-control">
+                            <label class="form-label">No HP</label>
+                            <input type="tel" class="form-control @error('telepon') is-invalid @enderror"
+                                wire:model.defer="telepon">
+                            @error('telepon')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="statusPending">
+                            <input class="form-check-input" type="checkbox" id="statusPending"
+                                wire:model.defer="is_pending">
                             <label class="form-check-label" for="statusPending">Status Pending</label>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Catatan</label>
-                            <textarea class="form-control" rows="3"></textarea>
                         </div>
                     </form>
                 </div>
@@ -232,7 +171,7 @@
     </div>
 
     <!-- Modal Edit Member -->
-    <div class="modal" id="editMemberModal" tabindex="-1" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="editMemberModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content rounded-3">
                 <div class="modal-header" style="background:#141927; color:#fff;">
@@ -240,50 +179,64 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editMemberForm">
+                    <form wire:submit.prevent="update" id="editMemberForm">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Kode</label>
-                                <input type="text" class="form-control" value="A001" readonly>
+                                <label class="form-label">ID Anggota</label>
+                                <input type="text" class="form-control @error('member_id') is-invalid @enderror"
+                                    wire:model.defer="member_id" readonly>
+                                @error('member_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Tipe</label>
-                                <input type="text" class="form-control" value="Siswa">
+                                <label class="form-label">Nama Anggota</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                    wire:model.defer="nama" placeholder="Nama Lengkap">
+                                @error('nama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Nama</label>
-                            <input type="email" class="form-control" value="Rafi Ahmad">
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Gender</label>
-                                <select class="form-select">
-                                    <option selected>Laki</option>
-                                    <option>Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">No HP</label>
-                                <input type="tel" class="form-control" value="08123456789">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
+                            <label class="form-label">Tipe Anggota</label>
+                            <select class="form-select @error('tipe_anggota_id') is-invalid @enderror"
+                                wire:model.defer="tipe_anggota_id">
+                                <option value="">Pilih Tipe</option>
+                                @foreach ($tipe_anggotas as $tipe)
+                                    <option value="{{ $tipe->id }}">{{ $tipe->nama_tipe }}</option>
+                                @endforeach
+                            </select>
+                            @error('tipe_anggota_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Alamat</label>
-                            <input type="text" class="form-control">
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model.defer="alamat" rows="3"></textarea>
+                            @error('alamat')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No HP</label>
+                            <input type="tel" class="form-control @error('telepon') is-invalid @enderror"
+                                wire:model.defer="telepon">
+                            @error('telepon')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="editPending">
-                            <label class="form-check-label" for="editPending">Pending</label>
+                            <input class="form-check-input" type="checkbox" id="editPending"
+                                wire:model.defer="is_pending">
+                            <label class="form-check-label" for="editPending">Status Pending</label>
                         </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="editMemberForm" class="btn btn-dark">Simpan</button>
+                    <button type="submit" form="editMemberForm" class="btn btn-dark">Simpan Perubahan</button>
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Batal</button>
                 </div>
             </div>
@@ -291,7 +244,7 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-3 text-center">
                 <div class="modal-header border-0" style="background:#141927; color:#fff;">
@@ -302,11 +255,10 @@
                     <p>Apakah Anda yakin ingin menghapus data ini?</p>
                 </div>
                 <div class="modal-footer border-0 justify-content-center">
-                    <button class="btn btn-outline-dark" data-bs-dismiss="modal">Batal</button>
-                    <button class="btn btn-danger">Ya, Hapus</button>
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger" wire:click="destroy()">Ya, Hapus</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

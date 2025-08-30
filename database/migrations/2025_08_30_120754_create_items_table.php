@@ -36,7 +36,7 @@ return new class extends Migration
             $table->foreign('bibliografi_id')
                 ->references('id')
                 ->on('bibliografis')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
             $table->foreign('lokasi_id')
                 ->references('kode_lokasi')
                 ->on('lokasis')

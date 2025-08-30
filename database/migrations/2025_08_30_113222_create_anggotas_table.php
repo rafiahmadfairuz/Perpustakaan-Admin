@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('tipe_anggota_id')
                 ->references('id')
                 ->on('tipe_anggotas')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
         });
     }
 

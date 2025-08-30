@@ -10,6 +10,10 @@ class Anggota extends Model
     /** @use HasFactory<\Database\Factories\AnggotaFactory> */
     use HasFactory;
     protected $guarded = ['id'];
+    protected $casts = [
+        'is_pending' => 'boolean',
+    ];
+
     public function tipeAnggota()
     {
         return $this->belongsTo(TipeAnggota::class, 'tipe_anggota_id');
