@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HariLibur>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gmd>
  */
-class HariLiburFactory extends Factory
+class GmdFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class HariLiburFactory extends Factory
     public function definition(): array
     {
         return [
-            'tanggal' => $this->faker->date(),
-            'keterangan' => $this->faker->sentence(),
+            'kode_gmd' => $this->faker->unique()->bothify('GMD-?#?#'),
+            'nama_gmd' => $this->faker->randomElement(['Text', 'Audio', 'Video', 'Multimedia']),
         ];
     }
 }

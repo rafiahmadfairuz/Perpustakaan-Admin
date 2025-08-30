@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\HariLibur;
+use App\Models\Anggota;
+use App\Models\TipeAnggota;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class HariLiburSeeder extends Seeder
+class AnggotaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        HariLibur::factory()->count(10)->create();
+        TipeAnggota::factory()->count(3)->create();
+        Anggota::factory()->count(10)->create();
     }
 }

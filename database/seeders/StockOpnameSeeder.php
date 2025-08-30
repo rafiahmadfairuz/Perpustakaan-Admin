@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\HariLibur;
+use App\Models\StockOpname;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class HariLiburSeeder extends Seeder
+class StockOpnameSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        HariLibur::factory()->count(10)->create();
+        StockOpname::factory()->count(5)->create();
     }
 }

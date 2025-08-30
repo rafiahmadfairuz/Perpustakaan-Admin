@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HariLibur>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TempatPenerbit>
  */
-class HariLiburFactory extends Factory
+class TempatPenerbitFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class HariLiburFactory extends Factory
     public function definition(): array
     {
         return [
-            'tanggal' => $this->faker->date(),
-            'keterangan' => $this->faker->sentence(),
+            'nama_tempat' => $this->faker->city(),
         ];
     }
 }

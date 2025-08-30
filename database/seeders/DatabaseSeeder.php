@@ -19,5 +19,36 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $this->call([
+            AnggotaSeeder::class,
+            AturanPeminjamanSeeder::class,
+            BahasaSeeder::class,
+            BibliografiPenulisSeeder::class,
+            BibliografiSeeder::class,
+            BibliografiTopikSeeder::class,
+            FrekuensiSeeder::class,
+            GmdSeeder::class,
+            HariLiburSeeder::class,
+            ItemSeeder::class,
+            KonfigurasiPenomoranSeeder::class,
+            LampiranSeeder::class,
+            LokasiSeeder::class,
+            PeminjamanSeeder::class,
+            PenerbitSeeder::class,
+            PenulisSeeder::class,
+            RakSeeder::class,
+            StatusItemSeeder::class,
+            StockOpnameSeeder::class,
+            SupplierSeeder::class,
+            SuratBebasPerpustakaanSeeder::class,
+            TempatPenerbitSeeder::class,
+            TipeAnggotaSeeder::class,
+            TipeKoleksiSeeder::class,
+            TopikSeeder::class,
+            TransaksiDendaSeeder::class,
+            TransaksiPemesananSeeder::class,
+            TujuanBebasPerpustakaanSeeder::class,
+        ]);
     }
 }

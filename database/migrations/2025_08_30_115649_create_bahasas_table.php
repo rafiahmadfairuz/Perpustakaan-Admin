@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hari_liburs', function (Blueprint $table) {
-            $table->id();
+        Schema::create('bahasas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('kode_bahasa', 10)->unique();
+            $table->string('nama_bahasa', 50);
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hari_liburs');
+        Schema::dropIfExists('bahasas');
     }
 };

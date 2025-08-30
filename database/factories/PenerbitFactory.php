@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\TempatPenerbit;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HariLibur>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Penerbit>
  */
-class HariLiburFactory extends Factory
+class PenerbitFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +18,8 @@ class HariLiburFactory extends Factory
     public function definition(): array
     {
         return [
-            'tanggal' => $this->faker->date(),
-            'keterangan' => $this->faker->sentence(),
+            'nama_penerbit' => $this->faker->company(),
+            'tempat_id' => TempatPenerbit::factory(),
         ];
     }
 }

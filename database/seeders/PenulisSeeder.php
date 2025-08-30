@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\HariLibur;
+use App\Models\Penulis;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class HariLiburSeeder extends Seeder
+class PenulisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        HariLibur::factory()->count(10)->create();
+        Penulis::factory()->count(10)->create();
     }
 }
