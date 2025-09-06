@@ -8,10 +8,11 @@
                         data-bs-target="#addMemberModal">
                         <i class="fa fa-plus"></i> Tambah Anggota
                     </button>
-
-                    <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
-                        <i class="fa fa-print"></i> Print
-                    </a>
+                    <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#printPreviewModal" data-url="{{ route('cetak.list.anggota') }}"
+                        onclick="loadPdfInModal(this)">
+                        <i class="fa fa-print"></i> Print Semua
+                    </button>
                 </div>
             </div>
 
@@ -33,7 +34,7 @@
 
                 <div class="mb-3 d-flex justify-content-between">
                     <input type="text" class="form-control w-100" placeholder="Cari ID atau nama anggota..."
-                           wire:model.live.debounce.10ms="search">
+                        wire:model.live.debounce.10ms="search">
                 </div>
 
                 <div class="table-responsive">
@@ -76,9 +77,14 @@
                                                 data-bs-target="#deleteConfirmModal">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                            <a href="#" class="btn btn-outline-dark btn-sm" target="_blank">
+
+                                            <button type="button" class="btn btn-outline-dark btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#printPreviewModal"
+                                                data-url="{{ route('cetak.kartu.anggota', $anggota->id) }}"
+                                                onclick="loadPdfInModal(this)">
                                                 <i class="fa fa-print"></i>
-                                            </a>
+                                            </button>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -90,7 +96,7 @@
                         </tbody>
                     </table>
                 </div>
-                 <div class="mt-3">
+                <div class="mt-3">
                     {{ $anggotas->links() }}
                 </div>
             </div>
@@ -98,7 +104,7 @@
         </div>
     </div>
 
-    <!-- ==================== MODALS ==================== -->
+    <!-- ==================== MODALS (YANG SUDAH ADA) ==================== -->
     <!-- Modal Create Member -->
     <div wire:ignore.self class="modal fade" id="addMemberModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -231,8 +237,6 @@
                                 wire:model.defer="is_pending">
                             <label class="form-check-label" for="editPending">Status Pending</label>
                         </div>
-
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -261,4 +265,21 @@
             </div>
         </div>
     </div>
+
+    <!-- ==================== MODAL BARU UNTUK PREVIEW CETAK ==================== -->
+    <div wire:ignore.self class="modal fade" id="printPreviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Preview Kartu Anggota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <iframe id="previewIframe" src="about:blank"
+                        style="width: 100%; height: 75vh; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

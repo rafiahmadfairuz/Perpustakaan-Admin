@@ -41,10 +41,15 @@
                 </div>
                 <div class="text-white fw-bold">Rafi Ahmad</div>
                 <div class="mt-3">
-                    <a href="#" class="btn btn-sm px-5"
-                        style="background:none; border:1px solid yellow; color:yellow; font-weight:bold;">
-                        LOGOUT
-                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-sm px-5"
+                            style="background:none; border:1px solid yellow; color:yellow; font-weight:bold;">
+                            Logout
+                        </button>
+                    </form>
+
+
                 </div>
             </div>
             <!-- End User Profile -->
@@ -67,7 +72,8 @@
                                 <a href="{{ route('home.index') }}"><span class="sub-item">Home</span></a>
                             </li>
                             <li class="{{ request()->routeIs('konfigurasi.index') ? 'active' : '' }}">
-                                <a href="{{ route('konfigurasi.index') }}"><span class="sub-item">Konfigurasi</span></a>
+                                <a href="{{ route('konfigurasi.index') }}"><span
+                                        class="sub-item">Konfigurasi</span></a>
                             </li>
                             <li class="{{ $isKeanggotaanActive ? 'active submenu' : '' }}">
                                 <a data-bs-toggle="collapse" href="#submenuKeanggotaan"
