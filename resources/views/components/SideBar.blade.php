@@ -223,7 +223,7 @@
                 <li class="nav-item my-3 py-2 {{ $isKatalogActive ? 'active submenu' : '' }}" style="background-color: rgba(255,255,255,0.05);">
                     <a data-bs-toggle="collapse" href="#menuKatalog"
                         aria-expanded="{{ $isKatalogActive ? 'true' : 'false' }}">
-                        <i class="fas fa-exchange-alt"></i>
+                        <i class="fas fa-book"></i>
                         <p>Katalog</p>
                         <span class="caret"></span>
                     </a>
@@ -259,7 +259,7 @@
 
 
                 <!-- PELAPORAN -->
-                <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
+                {{-- <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
                     <a data-bs-toggle="collapse" href="#menuPelaporan" aria-expanded="false">
                         <i class="fas fa-chart-pie"></i>
                         <p>Pelaporan</p>
@@ -277,7 +277,7 @@
                             <li><a href="#"><span class="sub-item">Rekaptulasi Buku</span></a></li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>
