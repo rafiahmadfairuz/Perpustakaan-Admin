@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Penerbit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bibliografi extends Model
 {
@@ -18,6 +19,10 @@ class Bibliografi extends Model
     public function bahasa()
     {
         return $this->belongsTo(Bahasa::class, 'bahasa_id', 'kode_bahasa');
+    }
+    public function penerbit()
+    {
+        return $this->belongsTo(Penerbit::class, 'penerbit_id');
     }
 
     public function tipeKoleksi()
@@ -59,7 +64,7 @@ class Bibliografi extends Model
 
     public function topik()
     {
-        return $this->belongsToMany(Topik::class, 'bibliografi_topik', 'bibliografi_id', 'topik_id')
+        return $this->belongsToMany(Topik::class, 'bibliografi_topiks', 'bibliografi_id', 'topik_id')
             ->withPivot('tipe', 'level', 'kategori')
             ->withTimestamps();
     }

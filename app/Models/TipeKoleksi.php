@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipeKoleksi extends Model
 {
+    protected $table = 'tipe_koleksis';
     /** @use HasFactory<\Database\Factories\TipeKoleksiFactory> */
     use HasFactory;
     protected $guarded = ['id'];

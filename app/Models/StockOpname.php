@@ -9,5 +9,6 @@ class StockOpname extends Model
 {
     /** @use HasFactory<\Database\Factories\StockOpnameFactory> */
     use HasFactory;
+    protected $table = 'stock_opnames';
     protected $guarded = ['id'];
 }

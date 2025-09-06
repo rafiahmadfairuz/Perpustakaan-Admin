@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Gmd;
+use App\Models\TipeAnggota;
+use App\Models\TipeKoleksi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AturanPeminjaman extends Model
 {
     /** @use HasFactory<\Database\Factories\AturanPeminjamanFactory> */
     use HasFactory;
+    protected $table = 'aturan_peminjamen';
     protected $guarded = ['id'];
     public function memberType()
     {

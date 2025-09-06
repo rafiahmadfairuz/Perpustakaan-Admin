@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Gmd;
 use App\Models\Bahasa;
+use App\Models\Penerbit;
 use App\Models\Frekuensi;
 use App\Models\TipeKoleksi;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -31,6 +32,7 @@ class BibliografiFactory extends Factory
             'gmd_id' => Gmd::factory(),
             'bahasa_id' => Bahasa::inRandomOrder()->value('kode_bahasa'),
             'tipe_koleksi_id' => TipeKoleksi::factory(),
+            'penerbit_id' => Penerbit::factory(),
             'klasifikasi' => $this->faker->randomElement(['000', '100', '200', '300', '400', '500', '600', '700', '800', '900']),
             'catatan' => $this->faker->sentence(),
             'spec_detail_info' => $this->faker->sentence(),

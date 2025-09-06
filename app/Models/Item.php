@@ -13,6 +13,7 @@ class Item extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $guarded = ['id'];
+    
     public function bibliografi()
     {
         return $this->belongsTo(Bibliografi::class, 'bibliografi_id');

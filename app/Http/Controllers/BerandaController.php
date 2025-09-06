@@ -104,4 +104,8 @@ class BerandaController extends Controller
     {
         return view('Beranda.Tabel Data.tujuanBebasPerpus');
     }
+    public function poke()
+    {
+        return view('livewire.pdf.cetak-katalog-pdf');
+    }
 }

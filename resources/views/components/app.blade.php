@@ -96,7 +96,7 @@
             const modals = document.querySelectorAll('.modal.show');
             modals.forEach(m => bootstrap.Modal.getInstance(m).hide());
         });
-       
+
     </script>
 </body>
 

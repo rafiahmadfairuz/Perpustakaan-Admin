@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('bibliografi_id');
             $table->string('judul', 255);
-            $table->string('nama_file', 255);
+            $table->string('nama_file', 255)->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('tipe_akses', ['Public', 'Private']);
             $table->timestamps();

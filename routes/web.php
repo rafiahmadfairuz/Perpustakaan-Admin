@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\SirkulasiController;
 
 Route::get('/', [BerandaController::class, 'viewHome'])->name('home.index');
 Route::get('/konfigurasi', [BerandaController::class, 'viewKonfigurasi'])->name('konfigurasi.index');
+Route::get('/poke', [BerandaController::class, 'poke'])->name('poke');
 
 Route::prefix('keanggotaan')->group(function () {
     Route::get('/daftar-anggota', [BerandaController::class, 'viewDaftarAnggota'])->name('keanggotaan.daftar');
@@ -27,4 +30,25 @@ Route::prefix('tabel-data')->group(function () {
     Route::get('/frekuensi', [BerandaController::class, 'viewFrekuensi'])->name('tabel.frekuensi');
     Route::get('/bahasa', [BerandaController::class, 'viewBahasa'])->name('tabel.bahasa');
     Route::get('/tujuan-bebas-perpus', [BerandaController::class, 'viewTujuanBebasPerpus'])->name('tabel.tujuan_bebas');
+});
+
+
+Route::prefix('sirkulasi')->group(function () {
+    Route::get('/aturan-peminjaman', [SirkulasiController::class, 'viewAturanPeminjaman'])->name('sirkulasi.aturan_peminjaman');
+    Route::get('/daftar-keterlambatan', [SirkulasiController::class, 'viewDaftarKeterlambatan'])->name('sirkulasi.daftar_keterlambatan');
+    Route::get('/pemesanan', [SirkulasiController::class, 'viewPemesanan'])->name('sirkulasi.pemesanan');
+    Route::get('/pengembalian', [SirkulasiController::class, 'viewPengembalian'])->name('sirkulasi.pengembalian');
+    Route::get('/riwayat-peminjaman', [SirkulasiController::class, 'viewRiwayatPeminjaman'])->name('sirkulasi.riwayat_peminjaman');
+    Route::get('/stock-opname', [SirkulasiController::class, 'viewStockOpname'])->name('sirkulasi.stock_opname');
+    Route::get('/transaksi', [SirkulasiController::class, 'viewTransaksi'])->name('sirkulasi.transaksi');
+});
+
+Route::prefix('katalog')->group(function () {
+    Route::get('/bibliografi', [KatalogController::class, 'viewBibliografi'])->name('katalog.bibliografi');
+    Route::get('/cetak-barcode-item', [KatalogController::class, 'viewCetakBarcodeItem'])->name('katalog.cetak_barcode_item');
+    Route::get('/cetak-catalog', [KatalogController::class, 'viewCetakCatalog'])->name('katalog.cetak_catalog');
+    Route::get('/cetak-label', [KatalogController::class, 'viewCetakLabel'])->name('katalog.cetak_label');
+    Route::get('/daftar-item', [KatalogController::class, 'viewDaftarItem'])->name('katalog.daftar_item');
+    Route::get('/item-keluar', [KatalogController::class, 'viewItemKeluar'])->name('katalog.item_keluar');
+    Route::get('/serial-control', [KatalogController::class, 'viewSerialControl'])->name('katalog.serial_control');
 });
