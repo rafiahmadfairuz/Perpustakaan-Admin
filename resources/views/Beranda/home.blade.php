@@ -11,8 +11,9 @@
                         </div>
                         <h3 class="fw-bold mb-0 text-white">Buku</h3>
                     </div>
-                    <h2 class="mb-3 text-white">72</h2>
-                    <a href="" class="text-small text-uppercase fw-bold op-8 text-white">
+                    <h2 class="mb-3 text-white">{{ $jumlahBuku }}</h2>
+                    <a href="{{ route('katalog.bibliografi') }}"
+                        class="text-small text-uppercase fw-bold op-8 text-white">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -28,8 +29,9 @@
                         </div>
                         <h3 class="fw-bold mb-0 text-white">Anggota</h3>
                     </div>
-                    <h2 class="mb-3 text-white">65</h2>
-                    <a href="" class="text-small text-uppercase fw-bold op-8 text-white">
+                    <h2 class="mb-3 text-white">{{ $jumlahAnggota }}</h2>
+                    <a href="{{ route('keanggotaan.daftar') }}"
+                        class="text-small text-uppercase fw-bold op-8 text-white">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -45,8 +47,8 @@
                         </div>
                         <h3 class="fw-bold mb-0 text-white">Sirkulasi Aktif</h3>
                     </div>
-                    <h2 class="mb-3 text-white">654</h2>
-                    <a href="" class="text-small text-uppercase fw-bold op-8 text-white">
+                    <h2 class="mb-3 text-white">{{ $jumlahSirkulasiAktif }}</h2>
+                    <a href="{{ route('sirkulasi.riwayat_peminjaman') }}" class="text-small text-uppercase fw-bold op-8 text-white">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -62,8 +64,9 @@
                         </div>
                         <h3 class="fw-bold mb-0 text-white">Laporan</h3>
                     </div>
-                    <h2 class="mb-3 text-white">34</h2>
-                    <a href="" class="text-small text-uppercase fw-bold op-8 text-white">
+                    <h2 class="mb-3 text-white">{{ $jumlahItem }}</h2>
+                    <a href="{{ route('katalog.daftar_item') }}"
+                        class="text-small text-uppercase fw-bold op-8 text-white">
                         More info <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>

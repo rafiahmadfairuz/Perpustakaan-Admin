@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'nama_pengguna' => 'Petugas',
-                'username' => 'petugas',
-                'password' => Hash::make('123456'),
+                'username' => 'S18022',
+                'password' => Hash::make('FVCXQ'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

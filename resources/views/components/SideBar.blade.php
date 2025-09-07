@@ -39,7 +39,7 @@
                     <img src="{{ asset('assets/img/avatar.png') }}" alt="Profile" class="avatar-img rounded-circle"
                         style="width:120px; height:120px; border:3px solid #fff;">
                 </div>
-                <div class="text-white fw-bold">Rafi Ahmad</div>
+                <div class="text-white fw-bold">{{ Auth::user()->nama_pengguna }}</div>
                 <div class="mt-3">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:inline;">
                         @csrf

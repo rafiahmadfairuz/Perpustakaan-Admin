@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Anggota;
+use App\Models\Peminjaman;
+use App\Models\Bibliografi;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -9,7 +13,17 @@ class BerandaController extends Controller
     // ===================== BERANDA =====================
     public function viewHome()
     {
-        return view('Beranda.home');
+        $jumlahBuku = Bibliografi::count();
+        $jumlahAnggota = Anggota::count();
+        $jumlahSirkulasiAktif = Peminjaman::where('is_return', false)->count();
+        $jumlahItem = Item::count();
+
+        return view('Beranda.home', compact(
+            'jumlahBuku',
+            'jumlahAnggota',
+            'jumlahSirkulasiAktif',
+            'jumlahItem'
+        ));
     }
 
     public function viewKonfigurasi()
