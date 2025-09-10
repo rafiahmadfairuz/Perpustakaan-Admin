@@ -4,6 +4,7 @@
     $isTabelActive = request()->routeIs('tabel.*');
     $isSirkulasiActive = request()->routeIs('sirkulasi.*');
     $isKatalogActive = request()->routeIs('katalog.*');
+    $isPelaporanActive = request()->routeIs('pelaporan.*');
 @endphp
 
 <!-- Sidebar -->
@@ -178,7 +179,8 @@
 
 
                 <!-- SIRKULASI -->
-                <li class="nav-item my-3 py-2 {{ $isSirkulasiActive ? 'active submenu' : '' }}" style="background-color: rgba(255,255,255,0.05);">
+                <li class="nav-item my-3 py-2 {{ $isSirkulasiActive ? 'active submenu' : '' }}"
+                    style="background-color: rgba(255,255,255,0.05);">
                     <a data-bs-toggle="collapse" href="#menuSirkulasi"
                         aria-expanded="{{ $isSirkulasiActive ? 'true' : 'false' }}">
                         <i class="fas fa-exchange-alt"></i>
@@ -220,7 +222,8 @@
                 </li>
 
                 <!-- KATALOG -->
-                <li class="nav-item my-3 py-2 {{ $isKatalogActive ? 'active submenu' : '' }}" style="background-color: rgba(255,255,255,0.05);">
+                <li class="nav-item my-3 py-2 {{ $isKatalogActive ? 'active submenu' : '' }}"
+                    style="background-color: rgba(255,255,255,0.05);">
                     <a data-bs-toggle="collapse" href="#menuKatalog"
                         aria-expanded="{{ $isKatalogActive ? 'true' : 'false' }}">
                         <i class="fas fa-book"></i>
@@ -234,24 +237,28 @@
                                         class="sub-item">Bibliografi</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.daftar_item') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.daftar_item') }}"><span
-                                        class="sub-item">Daftar Item</span></a>
+                                <a href="{{ route('katalog.daftar_item') }}"><span class="sub-item">Daftar
+                                        Item</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.item_keluar') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.item_keluar') }}"><span
-                                        class="sub-item">Item Keluar</span></a>
+                                <a href="{{ route('katalog.item_keluar') }}"><span class="sub-item">Item
+                                        Keluar</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.serial_control') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.serial_control') }}"><span class="sub-item">Serial Control</span></a>
+                                <a href="{{ route('katalog.serial_control') }}"><span class="sub-item">Serial
+                                        Control</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.cetak_label') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.cetak_label') }}"><span class="sub-item">Cetak Label</span></a>
+                                <a href="{{ route('katalog.cetak_label') }}"><span class="sub-item">Cetak
+                                        Label</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.cetak_barcode_item') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.cetak_barcode_item') }}"><span class="sub-item">Cetak Barcode Item</span></a>
+                                <a href="{{ route('katalog.cetak_barcode_item') }}"><span class="sub-item">Cetak
+                                        Barcode Item</span></a>
                             </li>
                             <li class="{{ request()->routeIs('katalog.cetak_catalog') ? 'active' : '' }}">
-                                <a href="{{ route('katalog.cetak_catalog') }}"><span class="sub-item">Cetak Katalog</span></a>
+                                <a href="{{ route('katalog.cetak_catalog') }}"><span class="sub-item">Cetak
+                                        Katalog</span></a>
                             </li>
                         </ul>
                     </div>
@@ -259,25 +266,44 @@
 
 
                 <!-- PELAPORAN -->
-                {{-- <li class="nav-item my-3 py-2" style="background-color: rgba(255,255,255,0.05); ">
-                    <a data-bs-toggle="collapse" href="#menuPelaporan" aria-expanded="false">
+                <li class="nav-item my-3 py-2 {{ $isPelaporanActive ? 'active submenu' : '' }}"
+                    style="background-color: rgba(255,255,255,0.05);">
+                    <a data-bs-toggle="collapse" href="#menuPelaporan"
+                        aria-expanded="{{ $isPelaporanActive ? 'true' : 'false' }}">
                         <i class="fas fa-chart-pie"></i>
                         <p>Pelaporan</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="menuPelaporan">
+                    <div class="collapse {{ $isPelaporanActive ? 'show' : '' }}" id="menuPelaporan">
                         <ul class="nav nav-collapse">
-                            <li><a href="#"><span class="sub-item">Statistik Koleksi</span></a></li>
-                            <li><a href="#"><span class="sub-item">Laporan Peminjaman</span></a></li>
-                            <li><a href="#"><span class="sub-item">Laporan Keanggotaan</span></a></li>
-                            <li><a href="#"><span class="sub-item">Rekapitulasi</span></a></li>
-                            <li><a href="#"><span class="sub-item">Daftar Pengunjung</span></a></li>
-                            <li><a href="#"><span class="sub-item">Laporan Denda</span></a></li>
-                            <li><a href="#"><span class="sub-item">Rekaptulasi Berkala</span></a></li>
-                            <li><a href="#"><span class="sub-item">Rekaptulasi Buku</span></a></li>
+                            <li class="{{ request()->routeIs('pelaporan.statistik-koleksi') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.statistik-koleksi') }}"><span class="sub-item">Statistik
+                                        Koleksi</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('pelaporan.laporan-peminjaman') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.laporan-peminjaman') }}"><span class="sub-item">Laporan
+                                        Peminjaman</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('pelaporan.laporan-keanggotaan') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.laporan-keanggotaan') }}"><span class="sub-item">Laporan
+                                        Keanggotaan</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('pelaporan.rekapitulasi') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.rekapitulasi') }}"><span
+                                        class="sub-item">Rekapitulasi</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('pelaporan.rekapitulasi-berkala') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.rekapitulasi-berkala') }}"><span
+                                        class="sub-item">Rekapitulasi Berkala</span></a>
+                            </li>
+                            <li class="{{ request()->routeIs('pelaporan.rekapitulasi-buku') ? 'active' : '' }}">
+                                <a href="{{ route('pelaporan.rekapitulasi-buku') }}"><span
+                                        class="sub-item">Rekapitulasi Buku</span></a>
+                            </li>
                         </ul>
                     </div>
-                </li> --}}
+                </li>
+
             </ul>
         </div>
     </div>

@@ -9,7 +9,7 @@
                         <div class="me-3">
                             <i class="fas fa-book fa-2x text-white"></i>
                         </div>
-                        <h3 class="fw-bold mb-0 text-white">Buku</h3>
+                        <h3 class="fw-bold mb-0 text-white">Bibliografi</h3>
                     </div>
                     <h2 class="mb-3 text-white">{{ $jumlahBuku }}</h2>
                     <a href="{{ route('katalog.bibliografi') }}"
@@ -62,7 +62,7 @@
                         <div class="me-3">
                             <i class="fas fa-file-alt fa-2x text-white"></i>
                         </div>
-                        <h3 class="fw-bold mb-0 text-white">Laporan</h3>
+                        <h3 class="fw-bold mb-0 text-white">Item</h3>
                     </div>
                     <h2 class="mb-3 text-white">{{ $jumlahItem }}</h2>
                     <a href="{{ route('katalog.daftar_item') }}"

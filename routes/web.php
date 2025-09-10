@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\SirkulasiController;
 
 Route::get('/login', [AuthController::class, 'viewLogin'])->name('login.index')->middleware('guest');
@@ -62,4 +63,44 @@ Route::prefix('katalog')->group(function () {
     Route::get('/daftar-item', [KatalogController::class, 'viewDaftarItem'])->name('katalog.daftar_item');
     Route::get('/item-keluar', [KatalogController::class, 'viewItemKeluar'])->name('katalog.item_keluar');
     Route::get('/serial-control', [KatalogController::class, 'viewSerialControl'])->name('katalog.serial_control');
+});
+
+
+Route::prefix('pelaporan')->group(function () {
+    Route::get('/pelaporan/statistik-koleksi', [PelaporanController::class, 'statistikKoleksi'])
+        ->name('pelaporan.statistik-koleksi');
+
+    Route::get('/pelaporan/statistik-koleksi/pdf', [PelaporanController::class, 'statistikKoleksiPdf'])
+        ->name('pelaporan.statistik-koleksi.pdf');
+
+    Route::get('/laporan-peminjaman', [PelaporanController::class, 'laporanPeminjaman'])
+        ->name('pelaporan.laporan-peminjaman');
+
+    Route::get('/laporan-peminjaman/pdf', [PelaporanController::class, 'laporanPeminjamanPdf'])
+        ->name('pelaporan.laporan-peminjaman.pdf');
+
+    Route::get('/laporan-keanggotaan', [PelaporanController::class, 'laporanKeanggotaan'])
+        ->name('pelaporan.laporan-keanggotaan');
+
+    Route::get('/laporan-keanggotaan/pdf', [PelaporanController::class, 'laporanKeanggotaanPdf'])
+        ->name('pelaporan.laporan-keanggotaan.pdf');
+
+    Route::get('/rekapitulasi', [PelaporanController::class, 'rekapitulasi'])
+        ->name('pelaporan.rekapitulasi');
+
+    Route::get('/rekapitulasi/pdf', [PelaporanController::class, 'rekapitulasiPdf'])
+        ->name('pelaporan.rekapitulasi.pdf');
+
+
+    Route::get('/rekapitulasi-berkala', [PelaporanController::class, 'rekapitulasiBerkala'])
+        ->name('pelaporan.rekapitulasi-berkala');
+
+    Route::get('/rekapitulasi-berkala/pdf', [PelaporanController::class, 'rekapitulasiBerkalaPdf'])
+        ->name('pelaporan.rekapitulasi-berkala.pdf');
+
+    Route::get('/rekapitulasi-buku', [PelaporanController::class, 'rekapitulasiBuku'])
+        ->name('pelaporan.rekapitulasi-buku');
+
+    Route::get('/rekapitulasi-buku/pdf', [PelaporanController::class, 'rekapitulasiBukuPdf'])
+        ->name('pelaporan.rekapitulasi-buku.pdf');
 });
