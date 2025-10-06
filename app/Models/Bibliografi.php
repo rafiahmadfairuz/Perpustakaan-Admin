@@ -11,6 +11,11 @@ class Bibliografi extends Model
     /** @use HasFactory<\Database\Factories\BibliografiFactory> */
     use HasFactory;
     protected $guarded = ['id'];
+    protected $casts = [
+    'is_etalase_hide' => 'boolean',
+    'is_promosi' => 'boolean',
+];
+
     public function gmd()
     {
         return $this->belongsTo(Gmd::class, 'gmd_id');

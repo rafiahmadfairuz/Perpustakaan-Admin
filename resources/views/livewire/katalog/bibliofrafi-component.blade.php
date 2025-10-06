@@ -48,7 +48,7 @@
                                     <td>
                                         @if ($item->gambar)
                                             <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar Item"
-                                                class="w-16 h-16 object-cover rounded" style="width: 200px">
+                                                class="w-16 h-16 object-cover rounded" style="width: 100px">
                                         @else
                                             -
                                         @endif
@@ -170,6 +170,87 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div id="pills-penomoran" role="tabpanel" tabindex="0">
+                            <div class="card border shadow-sm rounded-3">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-3">Tambah Penerbit Baru</h4>
+
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col-md-6">
+                                            <input type="text"
+                                                class="form-control @error('pengarang.nama') is-invalid @enderror"
+                                                placeholder="Nama Penerbit" wire:model.defer="pengarang.nama">
+                                            @error('pengarang.nama')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <select class="form-select @error('tempat_id') is-invalid @enderror"
+                                                wire:model="tempat_id">
+                                                <option value="">Pilih Tempat Penerbit</option>
+                                                @foreach ($tempat as $t)
+                                                    <option wire:key="tempat-{{ $t->id }}"
+                                                        value="{{ $t->id }}">{{ $t->nama_tempat }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tempat_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-dark"
+                                            wire:click="TambahPenerbitLangsung">
+                                            <i class="fa fa-plus"></i> Tambah Penerbit
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-header mt-4">
+                                    <h4 class="card-title mb-3">Tambah Tempat Baru</h4>
+
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col-md-12">
+                                            <input type="text"
+                                                class="form-control @error('nama_tempat') is-invalid @enderror"
+                                                placeholder="Nama Tempat Penerbit" wire:model.defer="nama_tempat">
+                                            @error('nama_tempat')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-dark"
+                                            wire:click="TambahTempatLangsung">
+                                            <i class="fa fa-plus"></i> Tambah Tempat Baru
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-4">
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('error') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-3 d-flex gap-5">
                             <div>
                                 <label class="form-label">Tahun terbit</label>
@@ -249,7 +330,7 @@
                                             <label class="form-label">Volume</label>
                                             <input type="text"
                                                 class="form-control @error('volume') is-invalid @enderror"
-                                                wire:model.defer="volume  ">
+                                                wire:model.defer="volume">
                                             @error('volume')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -356,7 +437,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Pilih Nama</label>
                                                 <select class="form-select @error('penulis_id') is-invalid @enderror"
-                                                    wire:model.defer="penulis_id">
+                                                    wire:model="penulis_id">
                                                     <option value="">Pilih Penulis</option>
                                                     @foreach ($penulis as $tipe)
                                                         <option value="{{ $tipe->id }}">{{ $tipe->nama }}
@@ -401,7 +482,7 @@
                                                 <div class="mb-3 d-flex justify-content-between">
                                                     <input type="text"
                                                         class="form-control w-75 @error('nama_topik') is-invalid @enderror"
-                                                        wire:model.defer="nama_topik">
+                                                        wire:model="nama_topik">
                                                     @error('nama_topik')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -658,10 +739,92 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+
+                        <div id="pills-penomoran" role="tabpanel" tabindex="0">
+                            <div class="card border shadow-sm rounded-3">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-3">Tambah Penerbit Baru</h4>
+
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col-md-6">
+                                            <input type="text"
+                                                class="form-control @error('pengarang.nama') is-invalid @enderror"
+                                                placeholder="Nama Penerbit" wire:model.defer="pengarang.nama">
+                                            @error('pengarang.nama')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <select class="form-select @error('tempat_id') is-invalid @enderror"
+                                                wire:model="tempat_id">
+                                                <option value="">Pilih Tempat Penerbit</option>
+                                                @foreach ($tempat as $t)
+                                                    <option wire:key="tempat-{{ $t->id }}"
+                                                        value="{{ $t->id }}">{{ $t->nama_tempat }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tempat_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-dark"
+                                            wire:click="TambahPenerbitLangsung">
+                                            <i class="fa fa-plus"></i> Tambah Penerbit
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-header mt-4">
+                                    <h4 class="card-title mb-3">Tambah Tempat Baru</h4>
+
+                                    <div class="row g-2 align-items-center mb-3">
+                                        <div class="col-md-12">
+                                            <input type="text"
+                                                class="form-control @error('nama_tempat') is-invalid @enderror"
+                                                placeholder="Nama Tempat Penerbit" wire:model.defer="nama_tempat">
+                                            @error('nama_tempat')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="button" class="btn btn-dark"
+                                            wire:click="TambahTempatLangsung">
+                                            <i class="fa fa-plus"></i> Tambah Tempat Baru
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-4">
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('error') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3 d-flex gap-5">
                             <div>
                                 <label class="form-label">Tahun terbit</label>
-                                <input type="text" class="form-control @error('tahun_terbit') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control @error('tahun_terbit') is-invalid @enderror"
                                     wire:model.defer="tahun_terbit">
                                 @error('tahun_terbit')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -737,7 +900,7 @@
                                             <label class="form-label">Volume</label>
                                             <input type="text"
                                                 class="form-control @error('volume') is-invalid @enderror"
-                                                wire:model.defer="volume  ">
+                                                wire:model.defer="volume">
                                             @error('volume')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -982,8 +1145,8 @@
                                                     class="form-select @error('lampiran.tipe_akses') is-invalid @enderror"
                                                     wire:model.defer="lampiran.tipe_akses">
                                                     <option value="">Pilih Tipe Akses</option>
-                                                    <option value="private">Private</option>
-                                                    <option value="public">Public</option>
+                                                    <option value="Private">Private</option>
+                                                    <option value="Public">Public</option>
                                                 </select>
                                                 @error('lampiran.tipe_akses')
                                                     <div class="invalid-feedback">{{ $message }}</div>
