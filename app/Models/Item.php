@@ -13,7 +13,12 @@ class Item extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $guarded = ['id'];
-    
+    protected $casts = [
+        'tgl_order' => 'date',
+        'tgl_penerimaan' => 'date',
+    ];
+
+
     public function bibliografi()
     {
         return $this->belongsTo(Bibliografi::class, 'bibliografi_id');

@@ -45,6 +45,7 @@
                                 <th>Id Anggota</th>
                                 <th>Nama Anggota</th>
                                 <th>Tipe</th>
+                                <th>Kelas</th>
                                 <th>Telepon</th>
                                 <th>Pending</th>
                                 <th>Kelola</th>
@@ -57,6 +58,7 @@
                                     <td>{{ $anggota->member_id }}</td>
                                     <td>{{ $anggota->nama }}</td>
                                     <td>{{ $anggota->tipeAnggota->nama_tipe ?? 'N/A' }}</td>
+                                    <td>{{ $anggota->kelas ?? 'User Ini Bukan Siswa' }}</td>
                                     <td>{{ $anggota->telepon }}</td>
                                     <td>
                                         @if ($anggota->is_pending)
@@ -147,6 +149,14 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Kelas</label>
+                            <input type="text" class="form-control @error('kelas') is-invalid @enderror"
+                                wire:model.defer="kelas" placeholder="Contoh X TPM 1">
+                            @error('kelas')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Alamat</label>
                             <textarea class="form-control @error('alamat') is-invalid @enderror" wire:model.defer="alamat" rows="3"></textarea>
                             @error('alamat')
@@ -214,6 +224,14 @@
                                 @endforeach
                             </select>
                             @error('tipe_anggota_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kelas</label>
+                            <input type="text" class="form-control @error('kelas') is-invalid @enderror"
+                                wire:model.defer="kelas" placeholder="Contoh Penulisan X TPM 1">
+                            @error('kelas')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

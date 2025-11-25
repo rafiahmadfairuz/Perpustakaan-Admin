@@ -43,7 +43,8 @@
                                 <th>No</th>
                                 <th>Item</th>
                                 <th>Deskripsi</th>
-                                <th>Informasi</th>
+                                <th>Informasi Tambahan</th>
+                                <th>Informasi Order</th>
                                 <th>Kelola</th>
                             </tr>
                         </thead>
@@ -51,6 +52,7 @@
                             @forelse($items as $index => $item)
                                 <tr>
                                     <td>{{ $items->firstItem() + $index }}</td>
+
                                     <td>
                                         @if ($item->gambar)
                                             <img src="{{ asset('storage/' . $item->gambar) }}" alt="Gambar Item"
@@ -59,24 +61,39 @@
                                             -
                                         @endif
                                     </td>
-                                    <td>Kode Item : {{ $item->kode_item }}
-                                        <br>
-                                        Judul : {{ $item->bibliografi->judul }}
-                                        <br>
-                                        Penulis : {{ $item->bibliografi->penulis->first()?->nama }}
-                                        <br>
-                                        Penerbit : {{ $item->bibliografi->penerbit->nama_penerbit }}
-                                        <br>
+
+                                    <td>
+                                        Kode Item : {{ $item->kode_item }} <br>
+                                        Judul : {{ $item->bibliografi->judul }} <br>
+                                        Penulis : {{ $item->bibliografi->penulis->first()?->nama }} <br>
+                                        Penerbit : {{ $item->bibliografi->penerbit->nama_penerbit }} <br>
                                         ISBN / ISSN : {{ $item->bibliografi->isbn_issn }}
                                     </td>
-                                    <td>Tipe Koleksi : {{ $item->tipeKoleksi->nama_tipe_koleksi }}
-                                        <br>
-                                        Klasifikasi :{{ $item->bibliografi->klasifikasi }}
-                                        <br>
-                                        Lokasi : {{ $item->lokasi->nama_lokasi }}
-                                        <br>
+
+                                    <td>
+                                        Tipe Koleksi : {{ $item->tipeKoleksi->nama_tipe_koleksi }} <br>
+                                        Klasifikasi : {{ $item->bibliografi->klasifikasi }} <br>
+                                        Lokasi : {{ $item->lokasi->nama_lokasi }} <br>
                                         Rak : {{ $item->rak->nama_rak }}
                                     </td>
+
+                                    <td>
+                                        Tanggal Order :
+                                        {{ $item->tgl_order ? $item->tgl_order->format('d-m-Y') : '-' }}
+                                        <br>
+
+                                        Tanggal Penerimaan :
+                                        {{ $item->tgl_penerimaan ? $item->tgl_penerimaan->format('d-m-Y') : '-' }}
+                                        <br>
+
+                                        Source :
+                                        {{ $item->source ?? '-' }}
+                                        <br>
+
+                                        Harga :
+                                        Rp {{ number_format($item->harga, 2, ',', '.') }}
+                                    </td>
+
                                     <td>
                                         <div class="d-flex gap-1">
                                             <button class="btn btn-outline-dark btn-sm"
@@ -84,6 +101,7 @@
                                                 data-bs-target="#editMemberModal">
                                                 <i class="fa fa-edit"></i>
                                             </button>
+
                                             <button class="btn btn-outline-danger btn-sm"
                                                 wire:click="deleteId('{{ $item->kode_item }}')" data-bs-toggle="modal"
                                                 data-bs-target="#deleteConfirmModal">
@@ -92,6 +110,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center">Tidak ada data item.</td>
@@ -99,6 +118,7 @@
                             @endforelse
                         </tbody>
                     </table>
+
                 </div>
                 <div class="mt-3">
                     {{ $items->links() }}

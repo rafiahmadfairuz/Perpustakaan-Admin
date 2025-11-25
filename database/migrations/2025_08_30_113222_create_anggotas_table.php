@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('member_id', 50)->unique();
             $table->string('nama', 100);
             $table->unsignedInteger('tipe_anggota_id');
+            $table->text('kelas')->nullable();
             $table->text('alamat')->nullable();
             $table->string('telepon', 20)->nullable();
             $table->boolean('is_pending')->default(false);

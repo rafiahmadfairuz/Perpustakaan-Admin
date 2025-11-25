@@ -288,6 +288,12 @@
                                     aria-controls="pills-riwayat" aria-selected="false">Lampiran</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link @if ($activeTab == 'pills-item') active @endif"
+                                    wire:click="setTab('pills-item')" id="pills-item-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-item" type="button" role="tab"
+                                    aria-controls="pills-item" aria-selected="false">Item</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link @if ($activeTab == 'pills-catatan') active @endif"
                                     wire:click="setTab('pills-catatan')" id="pills-catatan-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-catatan" type="button" role="tab"
@@ -411,13 +417,52 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!-- Tab Pengarang -->
-                            <div class="tab-pane fade  @if ($activeTab == 'pills-penomoran') show active @endif"
+                            <div class="tab-pane fade @if ($activeTab == 'pills-penomoran') show active @endif"
                                 id="pills-penomoran" role="tabpanel" tabindex="0">
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="">
                                             <h4 class="card-title mb-2">Pengarang</h4>
+
+
                                             <div>
                                                 <div class="mb-3 d-flex justify-content-between">
                                                     <input type="text"
@@ -426,13 +471,31 @@
                                                     @error('pengarang.nama')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
+
+                                                    <select
+                                                        class="form-control w-75 @error('pengarang.kategori') is-invalid @enderror"
+                                                        wire:model.defer="pengarang.kategori">
+                                                        <option value="">-- Pilih Peran --</option>
+                                                        <option value="Primary Author">Primary Author</option>
+                                                        <option value="Additional Author">Additional Author</option>
+                                                        <option value="Editor">Editor</option>
+                                                        <option value="Translator">Translator</option>
+                                                        <option value="Director">Director</option>
+                                                        <option value="Producer">Producer</option>
+                                                        <option value="Composer">Composer</option>
+                                                        <option value="Illustrator">Illustrator</option>
+                                                        <option value="Creator">Creator</option>
+                                                        <option value="Contributor">Contributor</option>
+                                                    </select>
+
                                                     <button type="button" class="btn btn-dark btn-sm"
                                                         wire:click="TambahPengarangLangsung">
-                                                        <i class="fa fa-plus"></i> Tambah Langsung
+                                                        <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Pilih Nama</label>
@@ -449,6 +512,81 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <!-- TABLE PENGARANG -->
+                                        <div class="card mt-3">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h5 class="mb-0">Daftar Pengarang</h5>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama Pengarang</th>
+                                                                <th>Kategori</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Ayunda Prameswari</td>
+                                                                <td>Fiksi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Dimas Sakti</td>
+                                                                <td>Non-Fiksi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Rara Mulyani</td>
+                                                                <td>Karya Ilmiah</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
@@ -459,7 +597,6 @@
                                                     data-bs-dismiss="alert"></button>
                                             </div>
                                         @endif
-
                                         @if (session()->has('error'))
                                             <div class="alert alert-danger alert-dismissible fade show"
                                                 role="alert">
@@ -471,28 +608,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tab Subyek -->
+
+                            <!-- TAB SUBYEK -->
+
                             <div class="tab-pane fade @if ($activeTab == 'pills-kartu') show active @endif"
                                 id="pills-kartu" role="tabpanel" tabindex="0">
+
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="">
                                             <h4 class="card-title mb-2">Subyek</h4>
+
+
                                             <div>
                                                 <div class="mb-3 d-flex justify-content-between">
                                                     <input type="text"
                                                         class="form-control w-75 @error('nama_topik') is-invalid @enderror"
                                                         wire:model="nama_topik">
-                                                    @error('nama_topik')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
+
+                                                    <select
+                                                        class="form-control w-75 @error('kategori_topik') is-invalid @enderror"
+                                                        wire:model="kategori_topik">
+                                                        <option value="">-- Pilih Topik --</option>
+                                                        <option value="Primary">Primary</option>
+                                                        <option value="Additional">Additional</option>
+                                                    </select>
+
                                                     <button type="button" wire:click="TambahSubyekLangsung"
                                                         class="btn btn-dark btn-sm">
-                                                        <i class="fa fa-plus"></i> Tambah Langsung
+                                                        <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Pilih Subyek</label>
@@ -500,29 +649,97 @@
                                                     wire:model.defer="topik_id">
                                                     <option value="">Pilih Subyek / Topik</option>
                                                     @foreach ($topik as $tipe)
-                                                        <option value="{{ $tipe->id }}">
-                                                            {{ $tipe->nama_topik }}</option>
+                                                        <option value="{{ $tipe->id }}">{{ $tipe->nama_topik }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
-                                                @error('topik_id')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- TABLE SUBYEK -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Subyek</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Subyek</th>
+                                                                <th>Kategori</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Sejarah Nasional</td>
+                                                                <td>Pendidikan</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Teknologi Informasi</td>
+                                                                <td>Teknologi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Kebudayaan Lokal</td>
+                                                                <td>Sosial</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
-                                            <div class="alert alert-success alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-success alert-dismissible fade show">
                                                 {{ session('success') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
                                             </div>
                                         @endif
-
                                         @if (session()->has('error'))
-                                            <div class="alert alert-danger alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-danger alert-dismissible fade show">
                                                 {{ session('error') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -531,63 +748,137 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tab Lampiran -->
-                            <div class="tab-pane fade  @if ($activeTab == 'pills-riwayat') show active @endif"
+
+                            <!-- TAB LAMPIRAN -->
+
+                            <div class="tab-pane fade @if ($activeTab == 'pills-riwayat') show active @endif"
                                 id="pills-riwayat" role="tabpanel" tabindex="0">
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="d-flex gap-5">
                                             <h4 class="card-title mb-0">Lampiran</h4>
                                         </div>
+
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Judul</label>
                                                 <input type="text"
                                                     class="form-control @error('lampiran.judul') is-invalid @enderror"
                                                     wire:model.defer="lampiran.judul">
-                                                @error('lampiran.judul')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
+
                                             <div class="mb-3">
                                                 <label class="form-label">Nama file</label>
                                                 <input type="file"
                                                     class="form-control @error('lampiran.nama_file') is-invalid @enderror"
                                                     wire:model="lampiran.nama_file">
-                                                @error('lampiran.nama_file')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="">Deskripsi: :</label>
-                                                <div
-                                                    class="form-floating @error('lampiran.deskripsi') is-invalid @enderror">
-                                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"
-                                                        wire:model.defer="lampiran.deskripsi"></textarea>
-                                                </div>
-                                                @error('lampiran.deskripsi')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                                <label class="form-label">Deskripsi</label>
+                                                <textarea class="form-control" style="height: 200px" wire:model.defer="lampiran.deskripsi"></textarea>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label class="form-label">Tipe Akses</label>
-                                                <select
-                                                    class="form-select @error('lampiran.tipe_akses') is-invalid @enderror"
-                                                    wire:model.defer="lampiran.tipe_akses">
+                                                <select class="form-select" wire:model.defer="lampiran.tipe_akses">
                                                     <option value="">Pilih Tipe Akses</option>
                                                     <option value="private">Private</option>
                                                     <option value="public">Public</option>
                                                 </select>
-                                                @error('lampiran.tipe_akses')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                            </div>
+
+                                            <button type="button" wire:click="TambahLampiran"
+                                                class="btn btn-dark btn-sm">
+                                                <i class="fa fa-plus"></i> Tambah
+                                            </button>
+                                        </div>
+
+                                        <!-- TABLE LAMPIRAN -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Lampiran</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Judul File</th>
+                                                                <th>Tipe File</th>
+                                                                <th>Tipe Akses</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Dokumen A</td>
+                                                                <td>PDF</td>
+                                                                <td>Publik</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Lampiran B</td>
+                                                                <td>DOCX</td>
+                                                                <td>Privat</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Gambar C</td>
+                                                                <td>JPG</td>
+                                                                <td>Publik</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+
                                             </div>
                                         </div>
+
+
                                     </div>
+
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
-                                            <div class="alert alert-success alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-success alert-dismissible fade show">
                                                 {{ session('success') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -595,8 +886,7 @@
                                         @endif
 
                                         @if (session()->has('error'))
-                                            <div class="alert alert-danger alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-danger alert-dismissible fade show">
                                                 {{ session('error') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -605,6 +895,386 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- TAB ITEM -->
+
+                            <div class="tab-pane fade @if ($activeTab == 'pills-item') show active @endif"
+                                id="pills-item" role="tabpanel" tabindex="0">
+
+                                <div class="card border shadow-sm rounded-3">
+
+                                    <div class="modal-body">
+
+                                        <ul class="nav nav-pills my-2" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link {{ $tabActive === 'pills-summary' ? 'active' : '' }}"
+                                                    wire:click.prevent="setActiveTab('pills-summary')">
+                                                    Detail
+                                                </button>
+                                            </li>
+
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link {{ $tabActive === 'pills-proses' ? 'active' : '' }}"
+                                                    wire:click.prevent="setActiveTab('pills-proses')">
+                                                    Info
+                                                </button>
+                                            </li>
+                                        </ul>
+
+                                        {{-- Beri tabel dengan kolom kode item , lokasi , tipe koleksi , kelola --}}
+
+                                        <!-- TABLE ITEMS -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Item</h5>
+                                            </div>
+
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Kode Item</th>
+                                                                <th>Lokasi</th>
+                                                                <th>Tipe Koleksi</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>ITEM001</td>
+                                                                <td>Gudang Utama</td>
+                                                                <td>Koleksi A</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>ITEM002</td>
+                                                                <td>Ruang Display</td>
+                                                                <td>Koleksi B</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>ITEM003</td>
+                                                                <td>Gudang II</td>
+                                                                <td>Koleksi C</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- TAB DETAIL FORM -->
+                                        <div class="tab-content" id="pills-tabContent">
+
+                                            <div class="tab-pane fade {{ $tabActive === 'pills-summary' ? 'show active' : '' }}"
+                                                id="pills-summary" role="tabpanel">
+
+                                                <div class="card border shadow-sm rounded-3">
+                                                    <div class="card-body p-4">
+
+                                                        <form wire:submit.prevent="store" id="additemForm">
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Judul</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="bibliografi_id">
+                                                                    <option value="">Pilih Judul</option>
+                                                                    @foreach ($bibliografi as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->judul }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Kode Item</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="kode_item">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Call Number</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="call_number">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Kode Inventori</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="kode_inventori">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Lokasi</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="lokasi_id">
+                                                                    <option value="">Pilih Lokasi</option>
+                                                                    @foreach ($tipe_lokasi as $tipe)
+                                                                        <option value="{{ $tipe->kode_lokasi }}">
+                                                                            {{ $tipe->nama_lokasi }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Rak</label>
+                                                                <select class="form-select" wire:model.defer="rak_id">
+                                                                    <option value="">Pilih Rak</option>
+                                                                    @foreach ($tipe_rak as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_rak }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Tipe Koleksi</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="tipe_koleksi_id">
+                                                                    <option value="">Pilih Tipe Koleksi</option>
+                                                                    @foreach ($tipe_koleksi as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_tipe_koleksi }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Status Item</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="status_id">
+                                                                    <option value="">Pilih Status Item</option>
+                                                                    @foreach ($tipe_status as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_status }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- TAB INFO -->
+                                            <div class="tab-pane fade {{ $tabActive === 'pills-proses' ? 'show active' : '' }}"
+                                                id="pills-proses" role="tabpanel">
+
+                                                <div class="card border shadow-sm rounded-3">
+                                                    <div class="card-body p-4">
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nomor Order</label>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="nmr_order">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Order</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_order">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Penerimaan</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_penerimaan">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Invoice</label>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="invoice">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Supplier</label>
+                                                            <select class="form-select"
+                                                                wire:model.defer="supplier_id">
+                                                                <option value="">Pilih Supplier</option>
+                                                                @foreach ($tipe_supplier as $tipe)
+                                                                    <option value="{{ $tipe->id }}">
+                                                                        {{ $tipe->nama_supplier }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Sumber</label>
+                                                            <select class="form-select" wire:model.defer="source">
+                                                                <option value="">Pilih Sumber</option>
+                                                                <option value="beli">Beli</option>
+                                                                <option value="priz_grant">Prize/Grant</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Invoice</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_invoice">
+                                                        </div>
+
+                                                        <div class="mb-3 d-flex gap-5">
+                                                            <div>
+                                                                <label class="form-label">Harga</label>
+                                                                <input type="number" class="form-control"
+                                                                    wire:model.defer="harga">
+                                                            </div>
+
+                                                            <div>
+                                                                <label class="form-label">Mata Uang</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="harga_currency">
+                                                                    <option value="">Pilih Mata Uang</option>
+                                                                    <option value="rupiah">Rupiah</option>
+                                                                    <option value="us_dollar">US Dollar</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    wire:model.defer="is_fotocopy">
+                                                                <label class="form-check-label">Fotocopy</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="button" wire:click="TambahItem"
+                                                class="btn btn-dark btn-sm mt-3">
+                                                <i class="fa fa-plus"></i> Tambah
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body p-4">
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show">
+                                            {{ session('error') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!-- Tab Catatan -->
                             <div class="tab-pane fade  @if ($activeTab == 'pills-catatan') show active @endif"
                                 id="pills-catatan" role="tabpanel" tabindex="0">
@@ -858,6 +1528,12 @@
                                     aria-controls="pills-riwayat" aria-selected="false">Lampiran</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link @if ($activeTab == 'pills-item') active @endif"
+                                    wire:click="setTab('pills-item')" id="pills-item-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-item" type="button" role="tab"
+                                    aria-controls="pills-item" aria-selected="false">Item</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link @if ($activeTab == 'pills-catatan') active @endif"
                                     wire:click="setTab('pills-catatan')" id="pills-catatan-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-catatan" type="button" role="tab"
@@ -920,7 +1596,8 @@
                                                 wire:model.defer="bahasa_id">
                                                 <option value="">Pilih Bahasa</option>
                                                 @foreach ($bahasa as $tipe)
-                                                    <option value="{{ $tipe->kode_bahasa }}">{{ $tipe->nama_bahasa }}
+                                                    <option value="{{ $tipe->kode_bahasa }}">
+                                                        {{ $tipe->nama_bahasa }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -981,13 +1658,64 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!-- Tab Pengarang -->
-                            <div class="tab-pane fade  @if ($activeTab == 'pills-penomoran') show active @endif"
+                            <div class="tab-pane fade @if ($activeTab == 'pills-penomoran') show active @endif"
                                 id="pills-penomoran" role="tabpanel" tabindex="0">
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="">
                                             <h4 class="card-title mb-2">Pengarang</h4>
+
+
                                             <div>
                                                 <div class="mb-3 d-flex justify-content-between">
                                                     <input type="text"
@@ -996,18 +1724,36 @@
                                                     @error('pengarang.nama')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
+
+                                                    <select
+                                                        class="form-control w-75 @error('pengarang.kategori') is-invalid @enderror"
+                                                        wire:model.defer="pengarang.kategori">
+                                                        <option value="">-- Pilih Peran --</option>
+                                                        <option value="Primary Author">Primary Author</option>
+                                                        <option value="Additional Author">Additional Author</option>
+                                                        <option value="Editor">Editor</option>
+                                                        <option value="Translator">Translator</option>
+                                                        <option value="Director">Director</option>
+                                                        <option value="Producer">Producer</option>
+                                                        <option value="Composer">Composer</option>
+                                                        <option value="Illustrator">Illustrator</option>
+                                                        <option value="Creator">Creator</option>
+                                                        <option value="Contributor">Contributor</option>
+                                                    </select>
+
                                                     <button type="button" class="btn btn-dark btn-sm"
                                                         wire:click="TambahPengarangLangsung">
-                                                        <i class="fa fa-plus"></i> Tambah Langsung
+                                                        <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Pilih Nama</label>
                                                 <select class="form-select @error('penulis_id') is-invalid @enderror"
-                                                    wire:model.defer="penulis_id">
+                                                    wire:model="penulis_id">
                                                     <option value="">Pilih Penulis</option>
                                                     @foreach ($penulis as $tipe)
                                                         <option value="{{ $tipe->id }}">{{ $tipe->nama }}
@@ -1019,6 +1765,81 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <!-- TABLE PENGARANG -->
+                                        <div class="card mt-3">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h5 class="mb-0">Daftar Pengarang</h5>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama Pengarang</th>
+                                                                <th>Kategori</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Ayunda Prameswari</td>
+                                                                <td>Fiksi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Dimas Sakti</td>
+                                                                <td>Non-Fiksi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Rara Mulyani</td>
+                                                                <td>Karya Ilmiah</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
@@ -1029,7 +1850,6 @@
                                                     data-bs-dismiss="alert"></button>
                                             </div>
                                         @endif
-
                                         @if (session()->has('error'))
                                             <div class="alert alert-danger alert-dismissible fade show"
                                                 role="alert">
@@ -1041,28 +1861,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tab Subyek -->
+
+                            <!-- TAB SUBYEK -->
+
                             <div class="tab-pane fade @if ($activeTab == 'pills-kartu') show active @endif"
                                 id="pills-kartu" role="tabpanel" tabindex="0">
+
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="">
                                             <h4 class="card-title mb-2">Subyek</h4>
+
+
                                             <div>
                                                 <div class="mb-3 d-flex justify-content-between">
                                                     <input type="text"
                                                         class="form-control w-75 @error('nama_topik') is-invalid @enderror"
-                                                        wire:model.defer="nama_topik">
-                                                    @error('nama_topik')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
+                                                        wire:model="nama_topik">
+
+                                                    <select
+                                                        class="form-control w-75 @error('kategori_topik') is-invalid @enderror"
+                                                        wire:model="kategori_topik">
+                                                        <option value="">-- Pilih Topik --</option>
+                                                        <option value="Primary">Primary</option>
+                                                        <option value="Additional">Additional</option>
+                                                    </select>
+
                                                     <button type="button" wire:click="TambahSubyekLangsung"
                                                         class="btn btn-dark btn-sm">
-                                                        <i class="fa fa-plus"></i> Tambah Langsung
+                                                        <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Pilih Subyek</label>
@@ -1070,29 +1902,97 @@
                                                     wire:model.defer="topik_id">
                                                     <option value="">Pilih Subyek / Topik</option>
                                                     @foreach ($topik as $tipe)
-                                                        <option value="{{ $tipe->id }}">
-                                                            {{ $tipe->nama_topik }}</option>
+                                                        <option value="{{ $tipe->id }}">{{ $tipe->nama_topik }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
-                                                @error('topik_id')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- TABLE SUBYEK -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Subyek</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Subyek</th>
+                                                                <th>Kategori</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Sejarah Nasional</td>
+                                                                <td>Pendidikan</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Teknologi Informasi</td>
+                                                                <td>Teknologi</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Kebudayaan Lokal</td>
+                                                                <td>Sosial</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
-                                            <div class="alert alert-success alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-success alert-dismissible fade show">
                                                 {{ session('success') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
                                             </div>
                                         @endif
-
                                         @if (session()->has('error'))
-                                            <div class="alert alert-danger alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-danger alert-dismissible fade show">
                                                 {{ session('error') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -1101,63 +2001,137 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tab Lampiran -->
-                            <div class="tab-pane fade  @if ($activeTab == 'pills-riwayat') show active @endif"
+
+                            <!-- TAB LAMPIRAN -->
+
+                            <div class="tab-pane fade @if ($activeTab == 'pills-riwayat') show active @endif"
                                 id="pills-riwayat" role="tabpanel" tabindex="0">
                                 <div class="card border shadow-sm rounded-3">
                                     <div class="card-header">
                                         <div class="d-flex gap-5">
                                             <h4 class="card-title mb-0">Lampiran</h4>
                                         </div>
+
+
                                         <div class="mt-3 p-3 border rounded">
                                             <div class="mb-3">
                                                 <label class="form-label">Judul</label>
                                                 <input type="text"
                                                     class="form-control @error('lampiran.judul') is-invalid @enderror"
                                                     wire:model.defer="lampiran.judul">
-                                                @error('lampiran.judul')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
+
                                             <div class="mb-3">
                                                 <label class="form-label">Nama file</label>
                                                 <input type="file"
                                                     class="form-control @error('lampiran.nama_file') is-invalid @enderror"
                                                     wire:model="lampiran.nama_file">
-                                                @error('lampiran.nama_file')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="">Deskripsi: :</label>
-                                                <div
-                                                    class="form-floating @error('lampiran.deskripsi') is-invalid @enderror">
-                                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"
-                                                        wire:model.defer="lampiran.deskripsi"></textarea>
-                                                </div>
-                                                @error('lampiran.deskripsi')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                                <label class="form-label">Deskripsi</label>
+                                                <textarea class="form-control" style="height: 200px" wire:model.defer="lampiran.deskripsi"></textarea>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label class="form-label">Tipe Akses</label>
-                                                <select
-                                                    class="form-select @error('lampiran.tipe_akses') is-invalid @enderror"
-                                                    wire:model.defer="lampiran.tipe_akses">
+                                                <select class="form-select" wire:model.defer="lampiran.tipe_akses">
                                                     <option value="">Pilih Tipe Akses</option>
-                                                    <option value="Private">Private</option>
-                                                    <option value="Public">Public</option>
+                                                    <option value="private">Private</option>
+                                                    <option value="public">Public</option>
                                                 </select>
-                                                @error('lampiran.tipe_akses')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                            </div>
+
+                                            <button type="button" wire:click="TambahLampiran"
+                                                class="btn btn-dark btn-sm">
+                                                <i class="fa fa-plus"></i> Tambah
+                                            </button>
+                                        </div>
+
+                                        <!-- TABLE LAMPIRAN -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Lampiran</h5>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Judul File</th>
+                                                                <th>Tipe File</th>
+                                                                <th>Tipe Akses</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>Dokumen A</td>
+                                                                <td>PDF</td>
+                                                                <td>Publik</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Lampiran B</td>
+                                                                <td>DOCX</td>
+                                                                <td>Privat</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Gambar C</td>
+                                                                <td>JPG</td>
+                                                                <td>Publik</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+
                                             </div>
                                         </div>
+
+
                                     </div>
+
                                     <div class="card-body p-4">
                                         @if (session()->has('success'))
-                                            <div class="alert alert-success alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-success alert-dismissible fade show">
                                                 {{ session('success') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -1165,8 +2139,7 @@
                                         @endif
 
                                         @if (session()->has('error'))
-                                            <div class="alert alert-danger alert-dismissible fade show"
-                                                role="alert">
+                                            <div class="alert alert-danger alert-dismissible fade show">
                                                 {{ session('error') }}
                                                 <button type="button" class="btn-close"
                                                     data-bs-dismiss="alert"></button>
@@ -1175,6 +2148,363 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- TAB ITEM -->
+
+                            <div class="tab-pane fade @if ($activeTab == 'pills-item') show active @endif"
+                                id="pills-item" role="tabpanel" tabindex="0">
+
+                                <div class="card border shadow-sm rounded-3">
+
+                                    <div class="modal-body">
+
+                                        <ul class="nav nav-pills my-2" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link {{ $tabActive === 'pills-summary' ? 'active' : '' }}"
+                                                    wire:click.prevent="setActiveTab('pills-summary')">
+                                                    Detail
+                                                </button>
+                                            </li>
+
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link {{ $tabActive === 'pills-proses' ? 'active' : '' }}"
+                                                    wire:click.prevent="setActiveTab('pills-proses')">
+                                                    Info
+                                                </button>
+                                            </li>
+                                        </ul>
+
+                                        {{-- Beri tabel dengan kolom kode item , lokasi , tipe koleksi , kelola --}}
+
+                                        <!-- TABLE ITEMS -->
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Daftar Item</h5>
+                                            </div>
+
+                                            <div class="card-body">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Kode Item</th>
+                                                                <th>Lokasi</th>
+                                                                <th>Tipe Koleksi</th>
+                                                                <th>Kelola</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1</td>
+                                                                <td>ITEM001</td>
+                                                                <td>Gudang Utama</td>
+                                                                <td>Koleksi A</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>ITEM002</td>
+                                                                <td>Ruang Display</td>
+                                                                <td>Koleksi B</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>ITEM003</td>
+                                                                <td>Gudang II</td>
+                                                                <td>Koleksi C</td>
+                                                                <td>
+                                                                    <div class="d-flex gap-1">
+                                                                        <button class="btn btn-outline-dark btn-sm">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-outline-danger btn-sm">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- TAB DETAIL FORM -->
+                                        <div class="tab-content" id="pills-tabContent">
+
+                                            <div class="tab-pane fade {{ $tabActive === 'pills-summary' ? 'show active' : '' }}"
+                                                id="pills-summary" role="tabpanel">
+
+                                                <div class="card border shadow-sm rounded-3">
+                                                    <div class="card-body p-4">
+
+                                                        <form wire:submit.prevent="store" id="additemForm">
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Judul</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="bibliografi_id">
+                                                                    <option value="">Pilih Judul</option>
+                                                                    @foreach ($bibliografi as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->judul }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Kode Item</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="kode_item">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Call Number</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="call_number">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Kode Inventori</label>
+                                                                <input type="text" class="form-control"
+                                                                    wire:model.defer="kode_inventori">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Lokasi</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="lokasi_id">
+                                                                    <option value="">Pilih Lokasi</option>
+                                                                    @foreach ($tipe_lokasi as $tipe)
+                                                                        <option value="{{ $tipe->kode_lokasi }}">
+                                                                            {{ $tipe->nama_lokasi }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Rak</label>
+                                                                <select class="form-select" wire:model.defer="rak_id">
+                                                                    <option value="">Pilih Rak</option>
+                                                                    @foreach ($tipe_rak as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_rak }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Tipe Koleksi</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="tipe_koleksi_id">
+                                                                    <option value="">Pilih Tipe Koleksi</option>
+                                                                    @foreach ($tipe_koleksi as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_tipe_koleksi }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Status Item</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="status_id">
+                                                                    <option value="">Pilih Status Item</option>
+                                                                    @foreach ($tipe_status as $tipe)
+                                                                        <option value="{{ $tipe->id }}">
+                                                                            {{ $tipe->nama_status }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- TAB INFO -->
+                                            <div class="tab-pane fade {{ $tabActive === 'pills-proses' ? 'show active' : '' }}"
+                                                id="pills-proses" role="tabpanel">
+
+                                                <div class="card border shadow-sm rounded-3">
+                                                    <div class="card-body p-4">
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nomor Order</label>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="nmr_order">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Order</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_order">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Penerimaan</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_penerimaan">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Invoice</label>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="invoice">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Supplier</label>
+                                                            <select class="form-select"
+                                                                wire:model.defer="supplier_id">
+                                                                <option value="">Pilih Supplier</option>
+                                                                @foreach ($tipe_supplier as $tipe)
+                                                                    <option value="{{ $tipe->id }}">
+                                                                        {{ $tipe->nama_supplier }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Sumber</label>
+                                                            <select class="form-select" wire:model.defer="source">
+                                                                <option value="">Pilih Sumber</option>
+                                                                <option value="beli">Beli</option>
+                                                                <option value="priz_grant">Prize/Grant</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Tanggal Invoice</label>
+                                                            <input type="date" class="form-control"
+                                                                wire:model.defer="tgl_invoice">
+                                                        </div>
+
+                                                        <div class="mb-3 d-flex gap-5">
+                                                            <div>
+                                                                <label class="form-label">Harga</label>
+                                                                <input type="number" class="form-control"
+                                                                    wire:model.defer="harga">
+                                                            </div>
+
+                                                            <div>
+                                                                <label class="form-label">Mata Uang</label>
+                                                                <select class="form-select"
+                                                                    wire:model.defer="harga_currency">
+                                                                    <option value="">Pilih Mata Uang</option>
+                                                                    <option value="rupiah">Rupiah</option>
+                                                                    <option value="us_dollar">US Dollar</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    wire:model.defer="is_fotocopy">
+                                                                <label class="form-check-label">Fotocopy</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="button" wire:click="TambahItem"
+                                                class="btn btn-dark btn-sm mt-3">
+                                                <i class="fa fa-plus"></i> Tambah
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body p-4">
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show">
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                    @if (session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show">
+                                            {{ session('error') }}
+                                            <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <!-- Tab Catatan -->
                             <div class="tab-pane fade  @if ($activeTab == 'pills-catatan') show active @endif"
                                 id="pills-catatan" role="tabpanel" tabindex="0">

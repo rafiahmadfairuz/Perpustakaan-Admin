@@ -14,7 +14,7 @@ class DaftarAnggotaComponent extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $member_id, $nama, $tipe_anggota_id, $alamat, $telepon, $is_pending;
+    public $member_id, $nama, $tipe_anggota_id, $kelas, $alamat, $telepon, $is_pending;
     public $selected_id;
     public $tipe_anggotas;
 
@@ -27,11 +27,23 @@ class DaftarAnggotaComponent extends Component
             'member_id'       => 'required|string|max:50|unique:anggotas,member_id,' . $this->selected_id,
             'nama'            => 'required|string|max:100',
             'tipe_anggota_id' => 'required|exists:tipe_anggotas,id',
+            'kelas'           => [
+                'required',
+                'regex:/^(X|XI|XII)\s[A-Z]{2,}\s[1-9]$/'
+            ],
             'alamat'          => 'nullable|string',
             'telepon'         => 'nullable|string|max:20',
             'is_pending'      => 'nullable|boolean',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'kelas.regex' => 'Format kelas harus seperti: X TPM 1 atau XI RPL 2.',
+        ];
+    }
+
 
     public function mount()
     {
@@ -48,6 +60,7 @@ class DaftarAnggotaComponent extends Component
         $this->member_id       = '';
         $this->nama            = '';
         $this->tipe_anggota_id = '';
+        $this->kelas           = '';
         $this->alamat          = '';
         $this->telepon         = '';
         $this->is_pending      = false;
@@ -67,10 +80,12 @@ class DaftarAnggotaComponent extends Component
                 'member_id'       => $this->member_id,
                 'nama'            => $this->nama,
                 'tipe_anggota_id' => $this->tipe_anggota_id,
+                'kelas'           => $this->kelas ?? null,
                 'alamat'          => $this->alamat,
                 'telepon'         => $this->telepon,
                 'is_pending'      => $this->is_pending ? 1 : 0,
             ]);
+
 
             $this->resetInput();
             session()->flash('success', 'Data anggota berhasil ditambahkan.');
@@ -88,6 +103,7 @@ class DaftarAnggotaComponent extends Component
         $this->member_id       = $anggota->member_id;
         $this->nama            = $anggota->nama;
         $this->tipe_anggota_id = $anggota->tipe_anggota_id;
+        $this->kelas = $anggota->kelas;
         $this->alamat          = $anggota->alamat;
         $this->telepon         = $anggota->telepon;
         $this->is_pending      = $anggota->is_pending;
@@ -102,6 +118,7 @@ class DaftarAnggotaComponent extends Component
                 'member_id'       => $this->member_id,
                 'nama'            => $this->nama,
                 'tipe_anggota_id' => $this->tipe_anggota_id,
+                'kelas'           => $this->kelas ?? null,
                 'alamat'          => $this->alamat,
                 'telepon'         => $this->telepon,
                 'is_pending'      => $this->is_pending ? 1 : 0,
@@ -137,7 +154,7 @@ class DaftarAnggotaComponent extends Component
         $anggotas = Anggota::with('tipeAnggota')
             ->where(function ($query) {
                 $query->where('nama', 'like', '%' . $this->search . '%')
-                      ->orWhere('member_id', 'like', '%' . $this->search . '%');
+                    ->orWhere('member_id', 'like', '%' . $this->search . '%');
             })
             ->latest()
             ->paginate(10);

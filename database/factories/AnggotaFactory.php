@@ -21,6 +21,13 @@ class AnggotaFactory extends Factory
             'member_id' => $this->faker->unique()->regexify('[A-Z0-9]{10}'),
             'nama' => $this->faker->name(),
             'tipe_anggota_id' => TipeAnggota::factory(),
+            'kelas' => function () {
+                $tingkat = $this->faker->randomElement(['X', 'XI', 'XII']);
+                $jurusan = $this->faker->randomElement(['RPL', 'TPM', 'TKJ', 'TSM', 'DKV']);
+                $nomor   = $this->faker->numberBetween(1, 9);
+
+                return "{$tingkat} {$jurusan} {$nomor}";
+            },
             'alamat' => $this->faker->address(),
             'telepon' => $this->faker->phoneNumber(),
             'is_pending' => $this->faker->boolean(),

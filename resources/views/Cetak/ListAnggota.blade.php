@@ -138,6 +138,7 @@
             <td>{{ $a->member_id }}</td>
             <td>{{ $a->nama }}</td>
             <td>{{ $a->tipeAnggota->nama_tipe ?? '-' }}</td>
+            <td>{{ $a->kelas ?? 'User Ini Bukan Siswa' }}</td>
             <td>{{ $a->telepon ?? '-' }}</td>
             <td>{{ $a->alamat ?? '-' }}</td>
           </tr>
